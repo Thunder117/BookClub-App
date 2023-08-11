@@ -6,7 +6,6 @@ import { useAuthContext } from './hooks/useAuthContext';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
-import MyReviewsPage from './pages/MyReviewsPage';
 import BookPage from './pages/BookPage';
 
 function App() {
