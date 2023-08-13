@@ -1,6 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext';
-//import AllGamesPage from './pages/AllGamesPage';
 
 // components
 import Home from './pages/Home';

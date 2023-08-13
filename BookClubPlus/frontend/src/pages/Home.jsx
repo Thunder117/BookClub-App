@@ -58,7 +58,7 @@ const Home = () => {
 
             <div className="font-sans flex min-h-screen flex-col w-full bg-neutral-100"> {/* ALL */}
 
-                <div className="pt-24 bg-gradient-to-br from-sky-500 to-indigo-500">
+                <div className="pt-28 bg-gradient-to-br from-sky-500 to-indigo-500">
 
                     <div className="flex justify-center">
                         <h2 className="font-bold text-3xl text-white w-4/6 text-center">
