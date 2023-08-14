@@ -9,7 +9,6 @@ const {
 
 const router = express.Router();
 
-
 // GET all videogames
 router.get('/', getVideogames);
 
