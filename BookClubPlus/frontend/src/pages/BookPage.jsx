@@ -58,17 +58,16 @@ const BookPage = () => {
 
         }
     };
-    
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         const books = [book.title]
         const members = [user.username]
+        const createdBy = user.username;
         const createdDate = new Date();
 
-        const club = { title, description, books, members, createdDate };
+        const club = { title, description, books, members, createdBy, createdDate };
 
         const response = await fetch('https://book-club-react-app-backend.onrender.com/api/clubs', {
             method: 'POST',
