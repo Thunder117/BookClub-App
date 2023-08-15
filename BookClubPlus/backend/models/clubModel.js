@@ -20,7 +20,7 @@ const clubSchema = new Schema({
     createdBy: {
         type: String,
         required: true
-    }
+    },
     createdDate: {
         type: String,
         required: true
