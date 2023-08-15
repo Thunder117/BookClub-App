@@ -27,14 +27,39 @@ const getClub = async (req, res) => {
 
 // create a new club
 const createClub = async (req, res) => {
-    const {title, description, books, members, createdDate} = req.body;
+    
+    const {title, description, books, members, createdBy, createdDate} = req.body;
+
+    let emptyFields = [];
+
+    if (!title) {
+        emptyFields.push('title');
+    }
+    if (!description) {
+        emptyFields.push('description');
+    }
+
+    if (emptyFields.length > 0) {
+        return res.status(400).json({error: 'Please fill in all the fields', emptyFields });
+    }
+
+    const create = async (exists, user_id) => {
+        if(exists == '') {
+            const club = await Club.create({ title, description, books, members, createdBy, createdDate });
+            res.status(200).json(club);
+        } else {
+            console.log(exists);
+            res.status(400).json({error: `A club with this name already exists`, emptyFields });
+        }
+    };
 
     // add doc to db
     try {
-        const club = await Club.create({title, description, books, members, createdDate});
-        res.status(200).json(club);
+        const createdBy = createdBy;
+        const exists = await Club.find({ title });
+        await create(exists, user_id);
     } catch (error) {
-        res.status(400).json({error: error.message});
+        res.status(400).json({error: `${error.message}`, emptyFields});
     }
 };
 

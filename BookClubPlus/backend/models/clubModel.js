@@ -17,6 +17,10 @@ const clubSchema = new Schema({
     members: [{ 
         type: String 
     }],
+    createdBy: {
+        type: String,
+        required: true
+    }
     createdDate: {
         type: String,
         required: true
