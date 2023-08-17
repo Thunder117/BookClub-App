@@ -10,7 +10,7 @@ import CreateClubFromBookForm from '../components/CreateClubFromBookForm';
 const BookPage = () => {
     const [book, setBook] = useState(); 
     const [hasDescription, setHasDescription] = useState(false); 
-    const [creatingClub, setCreatingClub] = useState(true); 
+    const [creatingClub, setCreatingClub] = useState(false); 
 
     const { user } = useAuthContext();
     const { id } = useParams();
@@ -54,6 +54,10 @@ const BookPage = () => {
         }
     };
 
+    const sectionSelectorSwitch = () => {
+        setCreatingClub(oldState => !oldState);
+    };
+
     return (
     <>
         <NavBar showNav/>
@@ -64,9 +68,13 @@ const BookPage = () => {
 
             { creatingClub 
             ?
-            
+            <>
+                <button onClick={sectionSelectorSwitch} className="w-24 my-2 font-bold text-xl text-center">
+                    Go back
+                </button>
+
                 <CreateClubFromBookForm book={book} user={user} />
-            
+            </>
             :
             <>
                 <Link to = {`/`} className="w-24 my-2 font-bold text-xl text-center">
@@ -81,7 +89,7 @@ const BookPage = () => {
                             <div className="w-full">
                                 <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="w-full select-none" />
                             </div>
-                            <button className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
+                            <button onClick={sectionSelectorSwitch} className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
                                 CREATE CLUB WITH THIS BOOK
                             </button>
                         </div>
