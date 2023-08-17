@@ -21,10 +21,6 @@ const clubSchema = new Schema({
         type: String,
         required: true
     },
-    createdDate: {
-        type: String,
-        required: true
-    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Club', clubSchema);

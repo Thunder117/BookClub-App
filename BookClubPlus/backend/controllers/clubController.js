@@ -28,7 +28,7 @@ const getClub = async (req, res) => {
 // create a new club
 const createClub = async (req, res) => {
     
-    const {title, description, books, members, createdBy, createdDate} = req.body;
+    const {title, description, books, members, createdBy} = req.body;
 
     let emptyFields = [];
 
@@ -45,7 +45,7 @@ const createClub = async (req, res) => {
 
     const create = async (exists) => {
         if(exists == '') {
-            const club = await Club.create({ title, description, books, members, createdBy, createdDate });
+            const club = await Club.create({ title, description, books, members, createdBy });
             res.status(200).json(club);
         } else {
             console.log(exists);
