@@ -71,19 +71,15 @@ const BookPage = () => {
     <>
         <NavBar showNav/>
         
-        <div className={`font-sans flex justify-center py-24 min-h-screen w-full ${creatingClub ? 'bg-gradient-to-br from-sky-500 to-indigo-500' : 'bg-neutral-100'}`}> {/* ALL */}
+        <div className={`font-sans flex justify-center sm:py-20 min-h-screen w-full ${creatingClub ? 'bg-gradient-to-br from-sky-500 to-indigo-500' : 'bg-neutral-100'}`}> {/* ALL */}
 
-            <div className="flex flex-col py-2 w-5/6 md:w-4/6 h-full">
+            <div className={`flex flex-col md:w-4/6 ${creatingClub ? 'w-full' : 'w-5/6 py-2' }`}>
 
             { creatingClub 
             ?
-            <>
-                <button onClick={sectionSelectorSwitch} className="w-24 my-2 font-bold text-xl text-center">
-                    Go back
-                </button>
-
-                <CreateClubFromBookForm book={book} user={user} />
-            </>
+            
+                <CreateClubFromBookForm book={book} user={user} sectionSelectorSwitch={sectionSelectorSwitch} />
+            
             :
             <>
                 <Link to = {`/`} className="w-24 my-2 font-bold text-xl text-center">
@@ -92,9 +88,9 @@ const BookPage = () => {
                     
                 { book &&
                 
-                    <div className="flex flex-col md:flex-row w-full min-h-[500px] break-words">
+                    <div className="flex flex-col sm:flex-row w-full min-h-[500px] break-words">
 
-                        <div className="flex flex-col md:w-1/3 justify-center flex-none">
+                        <div className="flex flex-col sm:w-1/3 justify-center flex-none">
                             <div className="w-full">
                                 <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="w-full select-none" />
                             </div>
@@ -103,7 +99,7 @@ const BookPage = () => {
                             </button>
                         </div>
 
-                        <div className="flex p-4 flex-col md:w-2/3">
+                        <div className="flex p-4 flex-col sm:w-2/3">
 
                             <div className="text-center p-2 font-bold text-2xl">
                                 {book.title}

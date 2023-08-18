@@ -45,43 +45,40 @@ const CreateClubFromBookForm = (props) => {
     
         <div className="font-sans flex justify-center items-center">
           
-            <div className="w-full sm:w-[450px] h-screen sm:h-full pt-32 pb-4 px-6 sm:pt-4 sm:mt-24 sm:rounded-md drop-shadow-2xl bg-neutral-100">
+            <div className="w-full h-screen sm:w-[500px] sm:h-full pt-32 pb-4 px-6 sm:py-4 sm:mt-16 sm:rounded-md drop-shadow-2xl bg-neutral-100">
                 
-                <form className="flex flex-col h-full font-bold" onSubmit={handleSubmit}>
+                <form className="flex flex-col h-full font-bold tracking-wide" onSubmit={handleSubmit}>
 
-                    <div className="flex justify-center py-6">
+                    <button onClick={props.sectionSelectorSwitch} className="w-24 my-2 font-bold text-xl text-center">
+                        Go back
+                    </button>
+
+                    <div className="flex justify-center py-4">
                         <h3 className="text-2xl">Create a Club!</h3>
                     </div>
 
-                    <div className="flex flex-col lg:flex-row pb-4 gap-4">
+                    <label>Club Title</label>
+                    <input 
+                        id='title' 
+                        type='text' 
+                        onChange={e => setTitle(e.target.value)} 
+                        value={title} maxLength="38" 
+                        className={`w-full h-10 px-2 mt-2 mb-4 rounded-sm ${emptyFields.includes('title') && 'border-2 border-red-400'}`} 
+                    />
 
-                        <div className="lg:basis-5/6 flex gap-2">
-
-                            <label>Club title</label>
-                            <input 
-                                id='title' 
-                                type='text' 
-                                onChange={e => setTitle(e.target.value)} 
-                                value={title} maxLength="38" 
-                                className={`${emptyFields.includes('title') && 'border-2 border-red-400'} w-full h-8 px-2 rounded-sm`} 
-                            />
-
-                        </div>
-
-                    </div>
-
+                    <label>A Fitting Description</label>
                     <textarea 
                         type='text' 
                         onChange={e => setDescription(e.target.value)} 
                         value={description} 
-                        className={`${emptyFields.includes('description') && 'border-2 border-red-400'} h-full text-black rounded-sm px-2`} 
+                        className={`w-full h-24 p-2 mt-2 mb-4 rounded-sm resize-none ${emptyFields.includes('description') && 'border-2 border-red-400'}`} 
                     />
 
                     <div className="flex flex-row justify-end w-full">
                         {error && <div className="text-red-400 p-2 text-lg">{error}</div>}
-                        <button className="p-2 text-lg">Done!</button>
                     </div>
 
+                    <button className="bg-sky-600 text-white rounded-sm px-6 py-4 my-4">Done!</button>
                 
                 </form>
             

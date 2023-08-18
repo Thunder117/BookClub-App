@@ -46,7 +46,9 @@ const LogIn = () => {
                         />
         
                         {error && <div className="text-red-700">{error}</div>}
-                        <button className="bg-sky-600 text-white rounded-sm px-6 py-4 my-4" disabled={isLoading}>Continue</button>
+                        <button className="bg-sky-600 text-white rounded-sm px-6 py-4 my-4" disabled={isLoading}>
+                            Continue
+                        </button>
                         
                     </form>
 
