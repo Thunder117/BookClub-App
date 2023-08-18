@@ -7,6 +7,7 @@ const CreateClubFromBookForm = (props) => {
     const [error, setError] = useState(null);
  
     // TODO: figure out how to properly add members
+    // TODO: change the book name and instead add the book serial number
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -54,10 +55,10 @@ const CreateClubFromBookForm = (props) => {
                     </button>
 
                     <div className="flex justify-center py-4">
-                        <h3 className="text-2xl">Create a Club!</h3>
+                        <h3 className="text-3xl">Create a Club!</h3>
                     </div>
 
-                    <label>Club Title</label>
+                    <label>CLUB TITLE</label>
                     <input 
                         id='title' 
                         type='text' 
@@ -66,7 +67,7 @@ const CreateClubFromBookForm = (props) => {
                         className={`w-full h-10 px-2 mt-2 mb-4 rounded-sm ${emptyFields.includes('title') && 'border-2 border-red-400'}`} 
                     />
 
-                    <label>A Fitting Description</label>
+                    <label>A FITTING DESCRIPTION FOR YOUR CLUB...</label>
                     <textarea 
                         type='text' 
                         onChange={e => setDescription(e.target.value)} 
