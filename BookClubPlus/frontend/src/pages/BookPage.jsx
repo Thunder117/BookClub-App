@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { Link } from "react-router-dom";
 
@@ -14,6 +14,7 @@ const BookPage = () => {
 
     const { user } = useAuthContext();
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         
@@ -54,6 +55,14 @@ const BookPage = () => {
         }
     };
 
+    const checkForUserToSwitch = () => {
+        if(user) {
+            sectionSelectorSwitch();
+        } else {
+            navigate('/login');
+        }
+    }
+
     const sectionSelectorSwitch = () => {
         setCreatingClub(oldState => !oldState);
     };
@@ -62,9 +71,9 @@ const BookPage = () => {
     <>
         <NavBar showNav/>
         
-        <div className="font-sans flex justify-center py-24 min-h-screen w-full bg-neutral-100"> {/* ALL */}
+        <div className={`font-sans flex justify-center py-24 min-h-screen w-full ${creatingClub ? 'bg-gradient-to-br from-sky-500 to-indigo-500' : 'bg-neutral-100'}`}> {/* ALL */}
 
-            <div className="flex flex-col py-2 w-5/6 md:w-4/6 h-full bg-red-300">
+            <div className="flex flex-col py-2 w-5/6 md:w-4/6 h-full">
 
             { creatingClub 
             ?
@@ -89,7 +98,7 @@ const BookPage = () => {
                             <div className="w-full">
                                 <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="w-full select-none" />
                             </div>
-                            <button onClick={sectionSelectorSwitch} className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
+                            <button onClick={checkForUserToSwitch} className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
                                 CREATE CLUB WITH THIS BOOK
                             </button>
                         </div>
