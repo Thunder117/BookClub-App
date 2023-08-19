@@ -98,6 +98,7 @@ const NavBar = (props) => {
                         </svg>
 
                     </button>
+                    {/*
                     <div className={`bg-white rounded-md min-w-[160px] top-[105%] right-0 text-black absolute drop-shadow-lg ${!menuDropdown && 'hidden'}`}>
                         <NavLink to="/games"
                         className={`px-6 py-2 block`}>
@@ -108,8 +109,9 @@ const NavBar = (props) => {
                             My Reviews
                         </NavLink>
                     </div>
+                    */}
                 </div>
-               
+                {/*
                 <NavLink to="/games" 
                 onClick={goToTopInstant} 
                 className={`transition duration-500 flex-none ${(props.showNav && "text-black")} hidden lg:block`}>
@@ -121,6 +123,7 @@ const NavBar = (props) => {
                 className={`transition duration-500 flex-none ${(props.showNav && "text-black")} hidden lg:block`}>
                     My Reviews
                 </NavLink>
+                */}
                 
             </div>
 
