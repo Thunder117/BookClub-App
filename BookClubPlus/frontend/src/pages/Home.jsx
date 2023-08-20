@@ -9,6 +9,7 @@ const Home = () => {
     const [showNav, setShowNav] = useState(false); 
     const [textValue, setTextValue] = useState("");
     const [books, setBooks] = useState();  
+    const [isLoadingBooks, setIsLoadingBooks] = useState(false);  
 
     useEffect(() => {
         setWindowConfig();
@@ -17,6 +18,9 @@ const Home = () => {
 
     const fetchBook = async (e) => {
         e.preventDefault();
+
+        setBooks();
+        setIsLoadingBooks(true);
         
         const response = await fetch(`http://openlibrary.org/search.json?title=${textValue}`);
         const json = await response.json();
@@ -29,7 +33,8 @@ const Home = () => {
         } else {
             console.log("not a single value");
         }
-        
+
+        setIsLoadingBooks(false);
     };
 
     const setWindowConfig = () => {
@@ -74,7 +79,7 @@ const Home = () => {
 
                 <div className="flex justify-center h-full">
                     
-                    <BooksShowcase books={books}/>
+                    <BooksShowcase books={books} isLoadingBooks={isLoadingBooks}/>
 
                 </div>
 

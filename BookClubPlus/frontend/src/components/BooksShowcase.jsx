@@ -1,5 +1,7 @@
 // Components
 import BookCard from "./BookCard";
+import { Spinner } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css'
 
 const BooksShowcase = (props) => {
 
@@ -14,6 +16,17 @@ const BooksShowcase = (props) => {
                     return null;
                 })
             }
+
+        {props.isLoadingBooks &&
+
+            <Spinner 
+                text={"Loading..."} 
+                center={false} 
+                width={"150px"} 
+                height={"150px"}
+            />
+            
+        }
 
         </div>
     );
