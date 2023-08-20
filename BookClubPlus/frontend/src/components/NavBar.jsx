@@ -74,7 +74,7 @@ const NavBar = (props) => {
 
                             <div className={`-translate-y-2 min-w-[160px] absolute drop-shadow-lg ${!userDropdown && 'hidden'}`}>
                                 <button onClick={handleClick} className={`px-6 py-2 block bg-[#f1f1f1] hover:#ddddddae`}>
-                                    Log Out
+                                    Sign Out
                                 </button>
                             </div>
                         </div>
@@ -82,7 +82,7 @@ const NavBar = (props) => {
                         <span className={`transition ${(props.showNav && "text-black")} hidden lg:inline`}>{user.username}</span>
                         
                         <button onClick={handleClick} className={`w-24 rounded-md border-2 border-green-700 transition duration-500 ${(props.showNav) && "text-gray-700"} hidden lg:inline`}>
-                            Log Out
+                            Sign Out
                         </button>
                     </div>
                 )}
