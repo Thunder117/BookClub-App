@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
+import { Spinner } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css'
 
 // components
 import NavBar from '../components/NavBar';
@@ -19,6 +21,15 @@ const SignUp = () => {
     return(
         <>
             <NavBar showNav/>
+
+            { isLoading && 
+                <Spinner 
+                    text={"Loading..."} 
+                    center={true} 
+                    width={"150px"} 
+                    height={"150px"}
+                />
+            }
 
             <div className="font-sans bg-gradient-to-br from-sky-500 to-indigo-500 flex min-h-screen justify-center items-center">
 
