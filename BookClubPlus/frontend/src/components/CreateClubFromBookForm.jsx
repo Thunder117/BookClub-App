@@ -44,9 +44,9 @@ const CreateClubFromBookForm = (props) => {
 
     return (
     
-        <div className="font-sans flex justify-center items-center">
+        <div className="font-sans h-full flex justify-center items-center pt-20 lg:pt-16">
           
-            <div className="w-full h-screen sm:w-[500px] sm:h-full pt-32 pb-4 px-6 sm:py-4 sm:mt-16 sm:rounded-md drop-shadow-2xl bg-neutral-100">
+            <div className="w-full h-full sm:w-[500px] sm:h-[500px] px-6 sm:py-4 sm:rounded-md drop-shadow-2xl bg-neutral-100">
                 
                 <form className="flex flex-col h-full font-bold tracking-wide" onSubmit={handleSubmit}>
 

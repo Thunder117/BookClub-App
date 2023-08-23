@@ -71,7 +71,7 @@ const BookPage = () => {
     <>
         <NavBar showNav/>
         
-        <div className={`font-sans flex justify-center py-20 min-h-screen w-full ${creatingClub ? 'bg-gradient-to-br from-sky-500 to-indigo-500' : 'bg-neutral-100'}`}> {/* ALL */}
+        <div className={`font-sans flex justify-center min-h-screen w-full ${creatingClub ? 'bg-gradient-to-br from-sky-500 to-indigo-500' : 'pt-20 bg-neutral-100'}`}> {/* ALL */}
 
             <div className={`flex flex-col md:w-4/6 ${creatingClub ? 'w-full' : 'w-5/6 py-2' }`}>
 
