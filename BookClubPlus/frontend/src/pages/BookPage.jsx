@@ -71,7 +71,7 @@ const BookPage = () => {
     <>
         <NavBar showNav/>
         
-        <div className={`font-sans flex justify-center sm:py-20 min-h-screen w-full ${creatingClub ? 'bg-gradient-to-br from-sky-500 to-indigo-500' : 'bg-neutral-100'}`}> {/* ALL */}
+        <div className={`font-sans flex justify-center py-20 min-h-screen w-full ${creatingClub ? 'bg-gradient-to-br from-sky-500 to-indigo-500' : 'bg-neutral-100'}`}> {/* ALL */}
 
             <div className={`flex flex-col md:w-4/6 ${creatingClub ? 'w-full' : 'w-5/6 py-2' }`}>
 
@@ -91,12 +91,15 @@ const BookPage = () => {
                     <div className="flex flex-col sm:flex-row w-full min-h-[500px] break-words">
 
                         <div className="flex flex-col sm:w-1/3 justify-center flex-none">
+
                             <div className="w-full">
                                 <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="w-full select-none" />
                             </div>
+
                             <button onClick={checkForUserToSwitch} className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
                                 CREATE CLUB WITH THIS BOOK
                             </button>
+                            
                         </div>
 
                         <div className="flex p-4 flex-col sm:w-2/3">
