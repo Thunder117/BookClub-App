@@ -29,9 +29,8 @@ const Home = () => {
             setBooks(json);
 
             console.log(json);
-            console.log("value found!");
         } else {
-            console.log("not a single value");
+            setBooks(0);
         }
 
         setIsLoadingBooks(false);
@@ -79,7 +78,14 @@ const Home = () => {
 
                 <div className="flex justify-center h-full">
                     
-                    <BooksShowcase books={books} isLoadingBooks={isLoadingBooks}/>
+                    { books !== 0 
+                    ?
+                        <BooksShowcase books={books} isLoadingBooks={isLoadingBooks}/>
+                    :
+                        <div className="h-full md:w-5/6 flex justify-center text-lg font-semibold text-gray-700 py-10">
+                            We didn't find any book with that name...
+                        </div>
+                    }
 
                 </div>
 
