@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NavBar from '../components/NavBar';
-import { Spinner } from 'react-spinner-animated';
+import { BarLoader } from 'react-spinner-animated';
 import 'react-spinner-animated/dist/index.css'
 
 // components
@@ -19,11 +19,10 @@ const LogIn = () => {
 
     return(
         <>
-            <NavBar showNav />
-
+            <NavBar showNav />  
             { isLoading && 
-                <Spinner 
-                    text={"Loading..."} 
+                <BarLoader 
+                    text={""}
                     center={true} 
                     width={"150px"} 
                     height={"150px"}
