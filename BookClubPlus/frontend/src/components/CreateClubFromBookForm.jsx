@@ -6,7 +6,9 @@ const CreateClubFromBookForm = (props) => {
     const [emptyFields, setEmptyFields ] = useState([]);
     const [error, setError] = useState(null);
  
-    // TODO: figure out how to properly add members
+    // TODO: I have NO IDEA why i didn't make this component its own page jeez... so do it, pls
+    // TODO: Make the members an object with the member name and the member _id
+    // TODO: Make the books an object with the book name and the book id
     const handleSubmit = async (event) => {
         event.preventDefault();
 
