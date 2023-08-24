@@ -67,6 +67,7 @@ const BookPage = () => {
         setCreatingClub(oldState => !oldState);
     };
 
+    // TODO: Add more content to this page
     return (
     <>
         <NavBar showNav/>
