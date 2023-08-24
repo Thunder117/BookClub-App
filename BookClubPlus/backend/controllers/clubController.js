@@ -28,7 +28,7 @@ const getClub = async (req, res) => {
 // create a new club
 const createClub = async (req, res) => {
     
-    const {title, description, books, members, createdBy} = req.body;
+    const {title, description, books, createdBy} = req.body;
 
     let emptyFields = [];
 
@@ -43,7 +43,7 @@ const createClub = async (req, res) => {
         return res.status(400).json({error: 'Please fill in all the fields', emptyFields });
     }
 
-    const create = async (exists) => {
+    const create = async (exists, members) => {
         if(exists == '') {
             const club = await Club.create({ title, description, books, members, createdBy });
             res.status(200).json(club);
@@ -55,8 +55,9 @@ const createClub = async (req, res) => {
 
     // add doc to db
     try {
+        const members = [req.user._id]
         const exists = await Club.find({ title });
-        await create(exists);
+        await create(exists, members);
     } catch (error) {
         res.status(400).json({error: `${error.message}`, emptyFields});
     }

@@ -7,15 +7,13 @@ const CreateClubFromBookForm = (props) => {
     const [error, setError] = useState(null);
  
     // TODO: figure out how to properly add members
-    // TODO: change the book name and instead add the book serial number
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const books = [props.book.title]
-        const members = [props.user.username]
+        const books = [props.id]
         const createdBy = props.user.username;
 
-        const club = { title, description, books, members, createdBy };
+        const club = { title, description, books, createdBy };
 
         const response = await fetch('https://book-club-react-app-backend.onrender.com/api/clubs', {
             method: 'POST',

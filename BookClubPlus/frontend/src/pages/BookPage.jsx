@@ -78,7 +78,7 @@ const BookPage = () => {
             { creatingClub 
             ?
             
-                <CreateClubFromBookForm book={book} user={user} sectionSelectorSwitch={sectionSelectorSwitch} />
+                <CreateClubFromBookForm book={book} user={user} id={id} sectionSelectorSwitch={sectionSelectorSwitch} />
             
             :
             <>
