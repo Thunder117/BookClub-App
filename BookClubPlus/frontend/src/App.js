@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import BookPage from './pages/BookPage';
+import CreateClubFromBookPage from './pages/CreateClubFromBookPage';
 
 function App() {
 	const { user } = useAuthContext();
@@ -21,6 +22,8 @@ function App() {
 					
 				</Route>*/}
 				<Route path="/works/:id" element={<BookPage/>}/>
+
+				<Route path="/createclub/:id" element={<CreateClubFromBookPage/>}/>
 
 				<Route path="/login" element={!user ? <LogIn/> : <Navigate to="/" />}/>
 

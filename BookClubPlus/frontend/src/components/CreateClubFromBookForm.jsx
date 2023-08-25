@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 const CreateClubFromBookForm = (props) => {
     const [title, setTitle] = useState('');
@@ -6,7 +7,6 @@ const CreateClubFromBookForm = (props) => {
     const [emptyFields, setEmptyFields ] = useState([]);
     const [error, setError] = useState(null);
  
-    // TODO: I have NO IDEA why i didn't make this component its own page jeez... so do it, pls
     // TODO: Make the members an object with the member name and the member _id
     // TODO: Make the books an object with the book name and the book id
     const handleSubmit = async (event) => {
@@ -50,9 +50,9 @@ const CreateClubFromBookForm = (props) => {
                 
                 <form className="flex flex-col h-full font-bold tracking-wide" onSubmit={handleSubmit}>
 
-                    <button onClick={props.sectionSelectorSwitch} className="w-24 my-2 font-bold text-xl text-center">
+                    <Link to={`${props.book.key}`} className="w-24 my-2 font-bold text-xl text-center">
                         Go back
-                    </button>
+                    </Link>
 
                     <div className="flex justify-center py-4">
                         <h3 className="text-3xl">Create a Club!</h3>

@@ -5,12 +5,10 @@ import { Link } from "react-router-dom";
 
 // Components
 import NavBar from '../components/NavBar';
-import CreateClubFromBookForm from '../components/CreateClubFromBookForm';
 
 const BookPage = () => {
     const [book, setBook] = useState(); 
     const [hasDescription, setHasDescription] = useState(false); 
-    const [creatingClub, setCreatingClub] = useState(false); 
 
     const { user } = useAuthContext();
     const { id } = useParams();
@@ -57,33 +55,23 @@ const BookPage = () => {
 
     const checkForUserToSwitch = () => {
         if(user) {
-            sectionSelectorSwitch();
+            
         } else {
             navigate('/login');
         }
     }
-
-    const sectionSelectorSwitch = () => {
-        setCreatingClub(oldState => !oldState);
-    };
 
     // TODO: Add more content to this page
     return (
     <>
         <NavBar showNav/>
         
-        <div className={`font-sans flex justify-center min-h-screen w-full ${creatingClub ? 'bg-gradient-to-br from-sky-500 to-indigo-500' : 'pt-20 bg-neutral-100'}`}> {/* ALL */}
+        <div className={`font-sans flex justify-center min-h-screen w-full pt-20 bg-neutral-100`}> {/* ALL */}
 
-            <div className={`flex flex-col md:w-4/6 ${creatingClub ? 'w-full' : 'w-5/6 py-2' }`}>
+            <div className={`flex flex-col md:w-4/6 w-5/6 py-2`}>
 
-            { creatingClub 
-            ?
-            
-                <CreateClubFromBookForm book={book} user={user} id={id} sectionSelectorSwitch={sectionSelectorSwitch} />
-            
-            :
             <>
-                <Link to = {`/`} className="w-24 my-2 font-bold text-xl text-center">
+                <Link to={`/`} className="w-24 my-2 font-bold text-xl text-center">
                     Go back
                 </Link>
                     
@@ -97,9 +85,9 @@ const BookPage = () => {
                                 <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="w-full select-none" />
                             </div>
 
-                            <button onClick={checkForUserToSwitch} className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
+                            <Link to={`/createclub/${id}`} className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
                                 CREATE CLUB WITH THIS BOOK
-                            </button>
+                            </Link>
                             
                         </div>
 
@@ -134,7 +122,6 @@ const BookPage = () => {
                 }
                 
             </>
-            }
 
             </div>
     
