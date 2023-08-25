@@ -53,11 +53,11 @@ const BookPage = () => {
         }
     };
 
-    const checkForUserToSwitch = () => {
+    const checkForUserToLink = () => {
         if(user) {
-            
+            navigate(`/createclub/${id}`);
         } else {
-            navigate('/login');
+            navigate('/login/0');
         }
     }
 
@@ -85,9 +85,9 @@ const BookPage = () => {
                                 <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="w-full select-none" />
                             </div>
 
-                            <Link to={`/createclub/${id}`} className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
+                            <button onClick={checkForUserToLink} className="bg-sky-600 m-2 text-white rounded-sm font-semibold px-6 py-4 my-4">
                                 CREATE CLUB WITH THIS BOOK
-                            </Link>
+                            </button>
                             
                         </div>
 

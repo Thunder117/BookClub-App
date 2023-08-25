@@ -25,9 +25,15 @@ function App() {
 
 				<Route path="/createclub/:id" element={<CreateClubFromBookPage/>}/>
 
-				<Route path="/login" element={!user ? <LogIn/> : <Navigate to="/" />}/>
+				{/*
+				<Route path="/login" element={!user ? <LogIn/> : <Navigate to="/"/>}/>
 
-				<Route path="/signup" element={!user ? <SignUp/> : <Navigate to="/" />}/>
+				<Route path="/signup" element={!user ? <SignUp/> : <Navigate to="/"/>}/>
+				*/}
+
+				<Route path="/login/:id" element={<LogIn/>}/>
+
+				<Route path="/signup/:id" element={<SignUp/>}/>
 
 			</Routes>
 		</>
