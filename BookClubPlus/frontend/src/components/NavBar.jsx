@@ -79,11 +79,11 @@ const NavBar = (props) => {
                     :
                     <div className={`flex flex-none gap-2 lg:gap-4 transition duration-500 ${(props.showNav) && "text-black" }`}>
                             
-                        <NavLink to="/signup/0" className="p-2" onClick={goToTopInstant} >
+                        <NavLink to="/signup" className="p-2" onClick={goToTopInstant} >
                             Sign Up
                         </NavLink>
 
-                        <NavLink to="/login/0" className="p-2" onClick={goToTopInstant}>
+                        <NavLink to="/login" className="p-2" onClick={goToTopInstant}>
                             Log In
                         </NavLink>
                         

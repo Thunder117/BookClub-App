@@ -18,6 +18,7 @@ const SignUp = () => {
         await signup(username, email, password);
     };
 
+    // TODO: give a link to login
     return(
         <>
             <NavBar showNav/>

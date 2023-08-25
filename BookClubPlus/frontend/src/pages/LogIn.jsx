@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import NavBar from '../components/NavBar';
 import { BarLoader } from 'react-spinner-animated';
+import { useParams, useNavigate } from 'react-router-dom';
 import 'react-spinner-animated/dist/index.css'
 
 // components
@@ -10,13 +11,21 @@ const LogIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { login, error, isLoading } = useLogin();
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         await login(email, password);
+
+        if(id) {
+            navigate(`/createclub/${id}`);
+        }
+        
     };
 
+    // TODO: give a link to register
     return(
         <>
             <NavBar showNav />  

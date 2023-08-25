@@ -57,7 +57,7 @@ const BookPage = () => {
         if(user) {
             navigate(`/createclub/${id}`);
         } else {
-            navigate('/login/0');
+            navigate(`/login/${id}`);
         }
     }
 
