@@ -8,11 +8,14 @@ const CreateClubFromBookForm = (props) => {
     const [error, setError] = useState(null);
  
     // TODO: Make the members an object with the member name and the member _id
-    // TODO: Make the books an object with the book name and the book id
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const books = [props.id]
+        const books = 
+        [{
+            bookId: props.id,
+            bookTitle: props.book.title
+        }]
         const createdBy = props.user.username;
 
         const club = { title, description, books, createdBy };
