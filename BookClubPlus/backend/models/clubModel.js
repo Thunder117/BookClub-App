@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 const clubSchema = new Schema({
     title: {
-        String,
+        type: String,
         required: true
     },
     description: {
-        String,
+        type: String,
         required: true
     },
     books: [{ 
@@ -20,7 +20,7 @@ const clubSchema = new Schema({
         userName: String 
     }],
     createdBy: {
-        String,
+        type: String,
         required: true
     },
 }, { timestamps: true });
