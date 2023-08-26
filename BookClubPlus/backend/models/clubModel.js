@@ -4,23 +4,23 @@ const Schema = mongoose.Schema;
 
 const clubSchema = new Schema({
     title: {
-        type: String,
+        String,
         required: true
     },
     description: {
-        type: String,
+        String,
         required: true
     },
     books: [{ 
-        type: String,
-        type: String 
+        bookId: String,
+        bookName: String 
     }],
     members: [{ 
-        type: String,
-        type: String 
+        userId: String,
+        userName: String 
     }],
     createdBy: {
-        type: String,
+        String,
         required: true
     },
 }, { timestamps: true });
