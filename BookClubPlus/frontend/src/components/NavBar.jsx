@@ -34,7 +34,6 @@ const NavBar = (props) => {
         });
     };
 
-    //TODO: change how the log out and username looks
     return(
         <div className={`font-sans font-semibold text-white flex flex-row w-full h-20 fixed z-30 top-0 transition duration-500 ${(props.showNav) && "bg-white"}`}> 
 
