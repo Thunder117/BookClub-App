@@ -55,7 +55,10 @@ const createClub = async (req, res) => {
 
     // add doc to db
     try {
-        const members = [req.user._id]
+        const members = [{
+            userId: req.user._id,
+            userName: createdBy
+        }]
         const exists = await Club.find({ title });
         await create(exists, members);
     } catch (error) {
