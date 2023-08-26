@@ -12,9 +12,11 @@ const clubSchema = new Schema({
         required: true
     },
     books: [{ 
+        type: String,
         type: String 
     }],
     members: [{ 
+        type: String,
         type: String 
     }],
     createdBy: {
