@@ -66,9 +66,9 @@ const BookPage = () => {
     <>
         <NavBar showNav/>
         
-        <div className={`font-sans flex justify-center min-h-screen w-full pt-20 bg-neutral-100`}> {/* ALL */}
+        <div className="font-sans flex justify-center min-h-screen pt-20 bg-neutral-100"> {/* ALL */}
 
-            <div className={`flex flex-col md:w-4/6 w-5/6 py-2`}>
+            <div className="flex flex-col md:w-4/6 w-5/6 py-2">
 
             <>
                 <Link to={`/`} className="w-24 my-2 font-bold text-xl text-center">
