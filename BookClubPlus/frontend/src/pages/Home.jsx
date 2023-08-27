@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Spinner } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css'
 
 // components
 import NavBar from '../components/NavBar';
@@ -10,28 +12,37 @@ const Home = () => {
     const [textValue, setTextValue] = useState("");
     const [books, setBooks] = useState();  
     const [isLoadingBooks, setIsLoadingBooks] = useState(false);  
+    const [apiAvailable, setApiAvailable] = useState();  
 
     useEffect(() => {
         setWindowConfig();
         
     }, []);
 
-    // TODO: change the fetch so the user knows when the api is not available
     const fetchBook = async (e) => {
         e.preventDefault();
 
         setBooks();
+        setApiAvailable();
         setIsLoadingBooks(true);
         
         const response = await fetch(`http://openlibrary.org/search.json?title=${textValue}`);
         const json = await response.json();
 
-        if(json.docs[0]) {
-            setBooks(json);
+        if (response.ok) { 
+            setApiAvailable(true);
 
-            console.log(json);
-        } else {
-            setBooks(0);
+            if(json.docs[0]) {
+                setBooks(json);
+    
+                console.log(json);
+            } else {
+                setBooks(0);
+            }
+        }
+
+        if (!response.ok) {
+            setApiAvailable(false);
         }
 
         setIsLoadingBooks(false);
@@ -79,12 +90,33 @@ const Home = () => {
 
                 <div className="flex justify-center h-full">
                     
-                    { books !== 0 
-                    ?
-                        <BooksShowcase books={books} isLoadingBooks={isLoadingBooks}/>
-                    :
+                    { isLoadingBooks &&
+                        <div className="h-full md:w-5/6 flex justify-center flex-wrap py-6 bg-red-300">
+                            <Spinner 
+                                text={"Loading..."} 
+                                center={false} 
+                                width={"150px"} 
+                                height={"150px"}
+                            />
+                        </div>
+                    }
+
+                    { apiAvailable === true &&
+                    <>
+                        { books !== 0 
+                        ?
+                            <BooksShowcase books={books} isLoadingBooks={isLoadingBooks}/>
+                        :
+                            <div className="h-full md:w-5/6 flex justify-center text-lg font-semibold text-gray-700 py-10">
+                                We didn't find any book with that name...
+                            </div>
+                        }  
+                    </>   
+                    }
+
+                    { apiAvailable === false &&
                         <div className="h-full md:w-5/6 flex justify-center text-lg font-semibold text-gray-700 py-10">
-                            We didn't find any book with that name...
+                            The api is not responding, please try again in a few moments.
                         </div>
                     }
 
