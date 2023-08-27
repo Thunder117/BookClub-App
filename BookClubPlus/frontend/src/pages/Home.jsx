@@ -16,6 +16,7 @@ const Home = () => {
         
     }, []);
 
+    // TODO: change the fetch so the user knows when the api is not available
     const fetchBook = async (e) => {
         e.preventDefault();
 
