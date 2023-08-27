@@ -1,6 +1,7 @@
 
 // Components
 import NavBar from '../components/NavBar';
+import ClubTitleButton from '../components/ClubTitleButton';
 
 const ClubsPage = () => {
 
@@ -14,15 +15,9 @@ const ClubsPage = () => {
                 
                 <div className="flex flex-col w-1/5 bg-purple-300"> {/* Left Column */}
                     
-                    <div className=""> {/* Placeholders to actual components */}
-                        A club name
-                    </div>
-                    <div className=""> {/* Placeholders to actual components */}
-
-                    </div>
-                    <div className=""> {/* Placeholders to actual components */}
-
-                    </div>
+                    <ClubTitleButton/>
+                    <ClubTitleButton/>
+                    <ClubTitleButton/>
 
                 </div>
 
