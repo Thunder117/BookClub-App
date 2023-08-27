@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const CreateClubFromBookForm = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState(''); 
     const [emptyFields, setEmptyFields ] = useState([]);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
  
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -39,6 +41,8 @@ const CreateClubFromBookForm = (props) => {
             setEmptyFields([]);
             setError(null);
             console.log('New club created', json);
+
+            navigate('/clubs');
         }
 
     };
