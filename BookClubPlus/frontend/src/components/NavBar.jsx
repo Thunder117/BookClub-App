@@ -56,7 +56,7 @@ const NavBar = (props) => {
                     ?
                     <div className="items-center h-full flex flex-row lg:gap-4">
 
-                        <span className={`transition w-full text-sm sm:text-base sm:p-4 ${(props.showNav && "text-black")}`}>Welcome back <span className="font-bold">{user.username}</span></span>
+                        <span className={`transition w-full text-sm sm:text-base sm:p-4 ${(props.showNav && "text-black")}`}>Hello, <span className="font-bold">{user.username}</span></span>
 
                         <div className={`relative h-full`}>
                             <button onClick={showUserDropdown} className="h-full w-auto">
