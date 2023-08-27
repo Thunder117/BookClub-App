@@ -6,6 +6,9 @@ const ClubsPage = () => {
 
     return (
         <NavBar showNav/>
+
+        
+
     );
 };
 
