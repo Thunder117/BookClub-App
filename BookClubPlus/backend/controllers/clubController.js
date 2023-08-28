@@ -8,23 +8,6 @@ const getClubs = async (req, res) => {
     res.status(200).json(clubs);
 };
 
-// get a single club
-const getClub = async (req, res) => {
-    const {id} = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: 'No such club'})
-    }
-
-    const club = await Club.findById(id);
-
-    if (!club) {
-        return res.status(404).json({error: 'No such club'});
-    }
-
-    res.status(200).json(club);
-};
-
 // Get all clubs of a user using the user's username
 const getClubsUser = async (req, res) => {
     const {id} = req.params;
@@ -77,7 +60,6 @@ const createClub = async (req, res) => {
 
 module.exports = {
     getClubs,
-    getClub,
     getClubsUser,
     createClub
 };
