@@ -66,9 +66,9 @@ const NavBar = (props) => {
                                 </svg>
                             </button>
                         
-                            <div className={`bg-white rounded-md min-w-[113px] top-[105%] right-0 lg:left-0 text-black absolute drop-shadow-lg ${!userDropdown && 'hidden'}`}>
+                            <div className={`bg-white rounded-md min-w-[130px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg ${!userDropdown && 'hidden'}`}>
                                 
-                                <button onClick={handleClick} className={`hover:bg-gray-100 rounded-md px-6 py-2 block`}>
+                                <button onClick={handleClick} className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
                                     Sign Out
                                 </button>
 
@@ -100,15 +100,15 @@ const NavBar = (props) => {
                     </button>
 
                     
-                    <div className={`bg-white rounded-md min-w-[160px] top-[105%] right-0 lg:left-0 text-black absolute drop-shadow-lg ${!menuDropdown && 'hidden'}`}>
+                    <div className={`bg-white rounded-md min-w-[160px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg ${!menuDropdown && 'hidden'}`}>
 
                         <NavLink to="/clubs"
-                        className={`hover:bg-gray-100 rounded-t-md px-6 py-2 block`}>
+                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
                             My Clubs
                         </NavLink>
 
                         <NavLink to="/myreviews"
-                        className={`hover:bg-gray-100 rounded-b-md px-6 py-2 block`}>
+                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
                             My ...
                         </NavLink>
 
