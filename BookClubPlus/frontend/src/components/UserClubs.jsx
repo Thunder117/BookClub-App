@@ -23,20 +23,7 @@ const UserClubs = (props) => {
         console.log(json);
         setClubs(json);
     };
-{/*
-    const fetchClubs = async () => {
-        const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/user/${props.user.username}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.user.token}`
-            }
-        });
-        const json = await response.json();
 
-        setClubs(json);
-    };
-*/}
 
     return(
         <div className="flex w-5/6 py-2 bg-green-300"> {/* Both Columns */}
