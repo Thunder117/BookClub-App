@@ -25,7 +25,16 @@ const getClub = async (req, res) => {
     res.status(200).json(club);
 };
 
-// create a new club
+// Get all clubs of a user using the user id
+const getReviewsUser = async (req, res) => {
+    const {id} = req.params;
+
+    const reviews = await Review.find({ username: id}).sort({createdAt: -1});
+
+    res.status(200).json(reviews);
+};
+
+// Create a new club
 const createClub = async (req, res) => {
     
     const {title, description, books, createdBy} = req.body;
