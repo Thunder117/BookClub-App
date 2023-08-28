@@ -4,6 +4,7 @@ const express = require('express');
 const {
     getClubs,
     getClub,
+    getClubsUser,
     createClub
 } = require('../controllers/clubController');
 
@@ -16,6 +17,9 @@ router.get('/', getClubs);
 
 // GET a single club
 router.get('/:id', getClub);
+
+// GET all clubs of a user
+router.get('user/:id', getClubsUser);
 
 // require auth for all of the following routes ------>
 router.use(requireAuth);
