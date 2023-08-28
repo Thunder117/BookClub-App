@@ -22,7 +22,7 @@ router.get('/', getClubs);
 router.get('/:id', getClub);
 
 // require auth for all of the following routes ------>
-router.use(requireAuth);
+//router.use(requireAuth);
 
 // POST a new club
 router.post('/', createClub);
