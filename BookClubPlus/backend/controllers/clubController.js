@@ -29,7 +29,9 @@ const getClub = async (req, res) => {
 const getClubsUser = async (req, res) => {
     const {id} = req.params;
 
-    const clubs = await Club.find({ username: id}).sort({createdAt: -1});
+    const clubs = await Club.find({ 
+        members: { username: id }
+    }).sort({createdAt: -1});
 
     res.status(200).json(clubs);
 };
