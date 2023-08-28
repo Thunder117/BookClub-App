@@ -29,7 +29,7 @@ const getClub = async (req, res) => {
 const getClubsUser = async (req, res) => {
     const {id} = req.params;
 
-    const clubs = await Club.find( {members: {$elemMatch: {userName:"rodrigo"}}} ).sort({createdAt: -1});
+    const clubs = await Club.find( {members: {$elemMatch: {userName: id}}} ).sort({createdAt: -1});
 
     res.status(200).json(clubs);
 };

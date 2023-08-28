@@ -8,9 +8,13 @@ const UserClubs = (props) => {
 
     useEffect(() => {
         
-        fetchClubs();
+        fetchAll();
             
     }, []);
+
+    const fetchAll = async () => {
+        await fetchClubs();
+    }
 
     const fetchClubs = async () => {
         const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/user/${props.user.username}`, {
