@@ -13,13 +13,7 @@ const UserClubs = (props) => {
     }, []);
 
     const fetchClubs = async () => {
-        const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/user/${props.user.username}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${props.user.token}`
-            }
-        });
+        const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/user/${props.user.username}`);
         const json = await response.json();
 
         console.log(json);
