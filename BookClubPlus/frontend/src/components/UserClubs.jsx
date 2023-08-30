@@ -30,9 +30,14 @@ const UserClubs = (props) => {
 
             <div className="flex flex-col w-1/5 bg-purple-300"> {/* Left Column */}
                 
-                <ClubTitleButton/>
-                <ClubTitleButton/>
-                <ClubTitleButton/>
+
+            { clubs && 
+                clubs.map((club, index) => {
+                   
+                    return <ClubTitleButton club={club} key={index}/>
+                    
+                })
+            }
 
             </div>
 
