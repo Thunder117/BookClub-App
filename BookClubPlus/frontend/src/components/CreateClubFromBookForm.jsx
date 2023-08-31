@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
+// TODO: Style this section more
 const CreateClubFromBookForm = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState(''); 
