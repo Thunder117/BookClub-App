@@ -35,7 +35,7 @@ const NavBar = (props) => {
     };
 
     return(
-        <div className={`font-sans font-semibold text-white flex flex-row w-full h-20 fixed z-30 top-0 transition duration-500 ${(props.showNav) && "bg-white"}`}> 
+        <div className={`font-sans font-semibold text-white flex flex-row w-full h-16 fixed z-30 top-0 transition duration-500 ${(props.showNav) && "bg-white"}`}> 
 
             <div className="flex basis-1/3 w-full items-center pl-5 lg:pl-40 gap-4 lg:gap-8"> {/* Left Side */}
                 
