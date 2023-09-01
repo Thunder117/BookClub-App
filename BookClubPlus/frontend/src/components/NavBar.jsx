@@ -107,9 +107,14 @@ const NavBar = (props) => {
                             My Clubs
                         </NavLink>
 
-                        <NavLink to="/myreviews"
+                        <NavLink to="/"
                         className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
-                            My ...
+                            Place Holder
+                        </NavLink>
+
+                        <NavLink to="/"
+                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
+                            Place Holder
                         </NavLink>
 
                     </div>
