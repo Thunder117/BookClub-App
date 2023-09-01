@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 // Components
 import ClubTitleButton from '../components/ClubTitleButton';
+import ClubBookTitleButton from '../components/ClubTitleButton';
 
 const UserClubs = (props) => {
     const [clubs, setClubs] = useState(); 
@@ -26,23 +27,38 @@ const UserClubs = (props) => {
 
 
     return(
-        <div className="flex w-5/6 py-2 bg-green-300"> {/* Both Columns */}
+        <div className="flex w-5/6 p-2 bg-yellow-300"> {/* Both Columns */}
 
-            <div className="flex flex-col w-1/5 bg-purple-300"> {/* Left Column */}
-                
+            <div className="flex flex-col w-1/5 p-2 bg-purple-300"> {/* Left Column */}
 
-            { clubs && 
-                clubs.map((club, index) => {
-                   
-                    return <ClubTitleButton club={club} key={index}/>
+                { clubs && 
+                    clubs.map((club, index) => {
                     
-                })
-            }
+                        return <ClubTitleButton club={club} key={index}/>
+                        
+                    })
+                }
 
             </div>
 
-            <div className="w-4/5 bg-blue-300"> {/* Right Column */}
-                hi 2
+            <div className="flex w-4/5 bg-blue-300"> {/* Right Column */}
+                
+                <div className="flex flex-col w-1/5 p-2 bg-red-300">
+
+                    { clubs && 
+                        clubs.map((club, index) => {
+                        
+                            return <ClubBookTitleButton club={club} key={index}/>
+                            
+                        })
+                    }
+
+                </div>
+
+                <div className="w-4/5 bg-green-300">
+                    information about the book in question
+                </div>
+
             </div>
 
         </div>
