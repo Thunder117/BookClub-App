@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 
 // Components
 import ClubTitleButton from '../components/ClubTitleButton';
-import ClubBookTitleButton from '../components/ClubTitleButton';
+import ClubBookTitleButton from '../components/ClubBookTitleButton';
 
 const UserClubs = (props) => {
     const [clubs, setClubs] = useState(); 
+    const [clubSelected, setClubSelected] = useState(0); 
 
     useEffect(() => {
         
@@ -25,6 +26,11 @@ const UserClubs = (props) => {
         setClubs(json);
     };
 
+    const clubSelector = (id) => {
+        setClubSelected(id);
+        console.log("club selected is:" + clubSelected)
+    }
+
 
     return(
         <div className="flex w-5/6 p-2 bg-yellow-300"> {/* Both Columns */}
@@ -33,8 +39,8 @@ const UserClubs = (props) => {
 
                 { clubs && 
                     clubs.map((club, index) => {
-                    
-                        return <ClubTitleButton club={club} key={index}/>
+                        
+                        return <ClubTitleButton club={club} clubSelected={clubSelected} clubSelector={clubSelector} key={index}/>
                         
                     })
                 }
