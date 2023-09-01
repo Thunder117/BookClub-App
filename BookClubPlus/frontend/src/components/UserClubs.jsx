@@ -28,7 +28,6 @@ const UserClubs = (props) => {
 
     const clubSelector = (id) => {
         setClubSelected(id);
-        console.log("club selected is:" + clubSelected)
     }
 
 
@@ -52,10 +51,21 @@ const UserClubs = (props) => {
                 <div className="flex flex-col w-1/5 p-2 bg-red-300">
 
                     { clubs && 
-                        clubs.map((club, index) => {
-                        
-                            return <ClubBookTitleButton club={club} key={index}/>
+                        clubs.map(({books, _id}, index) => {
                             
+                            return books.map((book, index) => {
+
+                                if(clubSelected === _id) {
+                                    return <ClubBookTitleButton book={book} key={index}/>
+                                }
+
+                            })
+
+                            /*
+                            if(clubSelected === club._id) {
+                                return <ClubBookTitleButton club={club} key={index}/>
+                            }
+                            */
                         })
                     }
 
