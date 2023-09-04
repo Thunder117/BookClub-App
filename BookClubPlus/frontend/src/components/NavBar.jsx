@@ -100,7 +100,8 @@ const NavBar = (props) => {
                     </button>
 
                     
-                    <div className={`bg-white rounded-md min-w-[160px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg ${!menuDropdown && 'hidden'}`}>
+                    {/*<div className={`bg-white rounded-md min-w-[160px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg ${!menuDropdown && 'hidden'}`}>*/}
+                    <div className={`bg-white rounded-md min-w-[160px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg hidden hover:block`}>
 
                         <NavLink to="/clubs"
                         className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
