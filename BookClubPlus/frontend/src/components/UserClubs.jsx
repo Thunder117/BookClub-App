@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 // Components
 import ClubTitleButton from '../components/ClubTitleButton';
 import BookTitleButton from '../components/BookTitleButton';
+import ClubDescription from '../components/ClubDescription';
 
 const UserClubs = (props) => {
     const [clubs, setClubs] = useState(); 
@@ -70,8 +71,19 @@ const UserClubs = (props) => {
 
             </div>
 
-            <div className="flex w-4/6 bg-green-300">
-                information about the book in question
+            <div className="flex w-4/6 bg-green-300"> {/* Right Column */}
+
+                { clubs && 
+                    clubs.map((club, index) => {
+                        
+                        if(clubSelected === club._id) {
+                            return <ClubDescription club={club} key={index}/>
+                        }
+                        return null;
+                        
+                    })
+                }
+
             </div>
 
         </div>
