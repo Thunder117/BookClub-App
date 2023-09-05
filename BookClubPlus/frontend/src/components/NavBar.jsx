@@ -93,32 +93,31 @@ const NavBar = (props) => {
                 <div className={`relative flex h-full`}>
 
                     <button onClick={showMenuDropdown}>
+                        
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`h-full p-2 transition duration-500 ${(props.showNav && "text-black")}`}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
                         </svg>
-
+                        
                     </button>
 
-                    
-                    {/*<div className={`bg-white rounded-md min-w-[160px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg ${!menuDropdown && 'hidden'}`}>*/}
-                    <div className={`bg-white rounded-md min-w-[160px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg hidden hover:block`}>
+                    <div className={`bg-white rounded-md min-w-[160px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg ${!menuDropdown && 'hidden'}`}>
 
-                        <NavLink to="/clubs"
-                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
-                            My Clubs
-                        </NavLink>
+                            <NavLink to="/clubs"
+                            className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
+                                My Clubs
+                            </NavLink>
 
-                        <NavLink to="/"
-                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
-                            Place Holder
-                        </NavLink>
+                            <NavLink to="/"
+                            className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
+                                Place Holder
+                            </NavLink>
 
-                        <NavLink to="/"
-                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
-                            Place Holder
-                        </NavLink>
+                            <NavLink to="/"
+                            className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
+                                Place Holder
+                            </NavLink>
 
-                    </div>
+                        </div>
                     
                 </div>
                 
