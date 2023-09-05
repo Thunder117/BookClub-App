@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 
 // Components
 import ClubTitleButton from '../components/ClubTitleButton';
-import ClubBookTitleButton from '../components/ClubBookTitleButton';
+import BookTitleButton from '../components/BookTitleButton';
 
 const UserClubs = (props) => {
     const [clubs, setClubs] = useState(); 
     const [clubSelected, setClubSelected] = useState(0); 
+    const [bookSelected, setBookSelected] = useState(0);
 
     useEffect(() => {
         
@@ -28,13 +29,17 @@ const UserClubs = (props) => {
 
     const clubSelector = (id) => {
         setClubSelected(id);
+        setBookSelected(0);
     }
 
+    const bookSelector = (id) => {
+        setBookSelected(id);
+    }
 
     return(
-        <div className="flex w-5/6 p-2 bg-yellow-300"> {/* Both Columns */}
+        <div className="flex w-5/6 p-2 bg-yellow-300"> {/* All Columns */}
 
-            <div className="flex flex-col w-1/5 p-2 bg-purple-300"> {/* Left Column */}
+            <div className="flex flex-col w-1/6 p-2 bg-purple-300"> {/* Left Column */}
 
                 { clubs && 
                     clubs.map((club, index) => {
@@ -46,35 +51,27 @@ const UserClubs = (props) => {
 
             </div>
 
-            <div className="flex w-4/5 bg-blue-300"> {/* Right Column */}
-                
-                <div className="flex flex-col w-1/5 p-2 bg-red-300">
+            <div className="flex flex-col p-2 w-1/6 bg-blue-300"> {/* Middle Column */}
+               
+                { clubs && 
+                    clubs.map(({books, _id}) => {
+                        
+                        return books.map((book, index) => {
 
-                    { clubs && 
-                        clubs.map(({books, _id}, index) => {
-                            
-                            return books.map((book, index) => {
-
-                                if(clubSelected === _id) {
-                                    return <ClubBookTitleButton book={book} key={index}/>
-                                }
-
-                            })
-
-                            /*
-                            if(clubSelected === club._id) {
-                                return <ClubBookTitleButton club={club} key={index}/>
+                            if(clubSelected === _id) {
+                                return <BookTitleButton book={book} bookSelected={bookSelected} bookSelector={bookSelector} key={index}/>
                             }
-                            */
+                            return null;
+
                         })
-                    }
 
-                </div>
+                    })
+                }
 
-                <div className="w-4/5 bg-green-300">
-                    information about the book in question
-                </div>
+            </div>
 
+            <div className="flex w-4/6 bg-green-300">
+                information about the book in question
             </div>
 
         </div>

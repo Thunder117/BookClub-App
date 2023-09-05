@@ -102,22 +102,22 @@ const NavBar = (props) => {
 
                     <div className={`bg-white rounded-md min-w-[160px] top-[105%] p-2 right-0 lg:left-0 text-black absolute drop-shadow-lg ${!menuDropdown && 'hidden'}`}>
 
-                            <NavLink to="/clubs"
-                            className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
-                                My Clubs
-                            </NavLink>
+                        <NavLink to="/clubs"
+                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
+                            My Clubs
+                        </NavLink>
 
-                            <NavLink to="/"
-                            className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
-                                Place Holder
-                            </NavLink>
+                        <NavLink to="/"
+                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
+                            Place Holder
+                        </NavLink>
 
-                            <NavLink to="/"
-                            className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
-                                Place Holder
-                            </NavLink>
+                        <NavLink to="/"
+                        className={`hover:bg-gray-200 rounded-md px-6 py-2 block`}>
+                            Place Holder
+                        </NavLink>
 
-                        </div>
+                    </div>
                     
                 </div>
                 
