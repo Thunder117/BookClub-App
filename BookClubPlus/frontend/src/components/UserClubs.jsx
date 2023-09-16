@@ -40,24 +40,23 @@ const UserClubs = (props) => {
     return(
         <div className="flex w-5/6 p-2"> {/* All Columns */}
 
-        { clubs && 
-        <>
+            { clubs && 
+            <>
 
-            <div className="flex flex-col w-1/6 p-2"> {/* Left Column */}
+                <div className="flex flex-col w-1/6 p-2"> {/* Left Column */}
 
-                { clubs.map((club, index) => {
-                        
+                    { clubs.map((club, index) => {
+                            
                         return <ClubTitleButton club={club} clubSelected={clubSelected} clubSelector={clubSelector} key={index}/>
-                        
-                    })
-                }
+                            
+                    })}
 
-            </div>
+                </div>
 
-            <div className="flex flex-col p-2 w-1/6"> {/* Middle Column */}
-            
-                { clubs.map(({books, _id}) => {
-                        
+                <div className="flex flex-col p-2 w-1/6"> {/* Middle Column */}
+                
+                    { clubs.map(({books, _id}) => {
+                            
                         return books.map((book, index) => {
 
                             if(clubSelected === _id) {
@@ -67,27 +66,25 @@ const UserClubs = (props) => {
 
                         })
 
-                    })
-                }
+                    })}
 
-            </div>
+                </div>
 
-            <div className="flex w-4/6 bg-green-300"> {/* Right Column */}
+                <div className="flex w-4/6 bg-green-300"> {/* Right Column */}
 
-                { clubs.map((club, index) => {
+                    { clubs.map((club, index) => {
                         
                         if(clubSelected === club._id) {
                             return <ClubDescription club={club} key={index}/>
                         }
                         return null;
-                        
-                    })
-                }
+                            
+                    })}
 
-            </div>
-                
-        </>
-        }
+                </div>
+                    
+            </>
+            }
 
         </div>
     );
