@@ -85,7 +85,7 @@ const BookPage = () => {
                                 <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="w-full rounded-md select-none" />
                             </div>
 
-                            <button onClick={checkForUserToLink} className="bg-indigo-200 hover:bg-indigo-300 text-indigo-600 rounded-full font-bold mx-2 px-6 py-4 my-4">
+                            <button onClick={checkForUserToLink} className="bg-indigo-100 hover:bg-indigo-200 transition text-indigo-700 rounded-full font-bold mx-2 px-6 py-4 my-4">
                                 Create Club with this Book
                             </button>
                             
