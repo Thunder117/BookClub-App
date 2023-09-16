@@ -38,12 +38,14 @@ const UserClubs = (props) => {
     }
 
     return(
-        <div className="flex w-5/6 p-2 bg-yellow-300"> {/* All Columns */}
+        <div className="flex w-5/6 p-2"> {/* All Columns */}
 
-            <div className="flex flex-col w-1/6 p-2 bg-purple-300"> {/* Left Column */}
+        { clubs && 
+        <>
 
-                { clubs && 
-                    clubs.map((club, index) => {
+            <div className="flex flex-col w-1/6 p-2"> {/* Left Column */}
+
+                { clubs.map((club, index) => {
                         
                         return <ClubTitleButton club={club} clubSelected={clubSelected} clubSelector={clubSelector} key={index}/>
                         
@@ -52,10 +54,9 @@ const UserClubs = (props) => {
 
             </div>
 
-            <div className="flex flex-col p-2 w-1/6 bg-blue-300"> {/* Middle Column */}
-               
-                { clubs && 
-                    clubs.map(({books, _id}) => {
+            <div className="flex flex-col p-2 w-1/6"> {/* Middle Column */}
+            
+                { clubs.map(({books, _id}) => {
                         
                         return books.map((book, index) => {
 
@@ -73,8 +74,7 @@ const UserClubs = (props) => {
 
             <div className="flex w-4/6 bg-green-300"> {/* Right Column */}
 
-                { clubs && 
-                    clubs.map((club, index) => {
+                { clubs.map((club, index) => {
                         
                         if(clubSelected === club._id) {
                             return <ClubDescription club={club} key={index}/>
@@ -85,6 +85,9 @@ const UserClubs = (props) => {
                 }
 
             </div>
+                
+        </>
+        }
 
         </div>
     );
