@@ -91,7 +91,7 @@ const Home = () => {
                 <div className="flex justify-center h-full">
                     
                     { isLoadingBooks &&
-                        <div className="h-full md:w-5/6 flex justify-center flex-wrap py-6 bg-red-300">
+                        <div className="h-full md:w-5/6 flex justify-center flex-wrap py-6">
                             <Spinner 
                                 text={"Loading..."} 
                                 center={false} 
