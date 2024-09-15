@@ -6,7 +6,7 @@ import BookTitleButton from '../components/BookTitleButton';
 import ClubDescription from '../components/ClubDescription';
 
 const UserClubs = (props) => {
-    const [clubs, setClubs] = useState(); 
+    const [clubs, setClubs] = useState(0); 
     const [clubSelected, setClubSelected] = useState(0); 
     const [bookSelected, setBookSelected] = useState(0);
 
@@ -39,8 +39,7 @@ const UserClubs = (props) => {
 
     return(
         <div className="flex w-5/6 p-2"> {/* All Columns */}
-
-            { clubs && 
+            { clubs.length > 0  && 
             <>
 
                 <div className="flex flex-col w-1/6 p-2"> {/* Left Column */}
@@ -84,6 +83,13 @@ const UserClubs = (props) => {
                 </div>
                     
             </>
+            }
+            
+            {clubs.length === 0  && 
+                <div>
+                    <div>Oops... It seems like you are not in a club yet</div>
+                    <button>Join a Club now</button>
+                </div>
             }
 
         </div>

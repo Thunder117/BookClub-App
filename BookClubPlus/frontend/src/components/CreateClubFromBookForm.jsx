@@ -65,7 +65,7 @@ const CreateClubFromBookForm = (props) => {
                         <h3 className="text-3xl">Create a Club!</h3>
                     </div>
 
-                    <label>CLUB TITLE</label>
+                    <label>Club Name</label>
                     <input 
                         id='title' 
                         type='text' 
@@ -74,7 +74,7 @@ const CreateClubFromBookForm = (props) => {
                         className={`w-full h-10 px-2 mt-2 mb-4 rounded-sm ${emptyFields.includes('title') && 'border-2 border-red-400'}`} 
                     />
 
-                    <label>A FITTING DESCRIPTION FOR YOUR CLUB...</label>
+                    <label>A fitting description for your club</label>
                     <textarea 
                         type='text' 
                         onChange={e => setDescription(e.target.value)} 

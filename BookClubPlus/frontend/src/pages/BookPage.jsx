@@ -55,13 +55,25 @@ const BookPage = () => {
 
     const checkForUserToLink = () => {
         if(user) {
-            navigate(`/createclub/${id}`);
+            return true;
         } else {
             navigate(`/login/${id}`);
         }
     }
 
-    // TODO: Add more content to this page
+    const checkForUserCreateClub = () => {
+        if(checkForUserToLink()) {
+            navigate(`/createclub/${id}`);
+        }
+    }
+
+    //TODO:
+    const checkForUserAddClub = () => {
+        if(checkForUserToLink()) { 
+            navigate(`/addtoclub/${id}`);
+        }
+    }
+
     return (
     <>
         <NavBar showNav/>
@@ -71,7 +83,10 @@ const BookPage = () => {
             <div className="flex flex-col md:w-4/6 w-5/6 py-2">
 
             <>
-                <Link to={`/`} className="w-24 my-2 font-bold text-xl text-center">
+                <Link to={`/`} className="flex gap-1 w-32 h-8 m-2 font-bold text-xl justify-center hover:bg-blue-300 rounded-full transition">
+                    <svg class="w-6 h-8 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+                    </svg>
                     Go back
                 </Link>
                     
@@ -80,14 +95,19 @@ const BookPage = () => {
                     <div className="flex flex-col sm:flex-row w-full min-h-[500px] break-words">
 
                         <div className="flex flex-col sm:w-1/3 justify-center flex-none">
+                            <div className="flex flex-col px-2 py-4 my-4 gap-4">
+                                <button onClick={checkForUserCreateClub} className="bg-indigo-100 hover:bg-indigo-300 transition text-indigo-800 hover:text-white rounded-full font-bold px-6 py-2">
+                                    Create a club with this book
+                                </button>
 
-                            <div className="w-full">
-                                <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="w-full rounded-md select-none" />
+                                <button onClick={checkForUserAddClub} className="bg-indigo-100 hover:bg-indigo-300 transition text-indigo-800 hover:text-white rounded-full font-bold px-6 py-4">
+                                    Add this book to one of your clubs
+                                </button>
                             </div>
 
-                            <button onClick={checkForUserToLink} className="bg-indigo-100 hover:bg-indigo-200 transition text-indigo-700 rounded-full font-bold mx-2 px-6 py-4 my-4">
-                                Create Club with this Book
-                            </button>
+                            <div className="w-full max-h-96 flex justify-center">
+                                <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="rounded-md h-full select-none" />
+                            </div>
                             
                         </div>
 
@@ -97,7 +117,7 @@ const BookPage = () => {
                                 {book.title}
                             </div>
 
-                            <div className="py-2 md:p-4 font-semibold text-lg">
+                            <div className="py-2 md:p-4 max-h-96 font-semibold text-lg overflow-auto">
                                 
                                 {hasDescription
                                 ?   
