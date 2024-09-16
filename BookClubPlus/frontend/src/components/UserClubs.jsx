@@ -38,7 +38,7 @@ const UserClubs = (props) => {
     }
 
     return(
-        <div className="flex w-5/6 p-2"> {/* All Columns */}
+        <div className="flex w-5/6 p-2 justify-center"> {/* All Columns */}
             { clubs.length > 0  && 
             <>
 
@@ -51,8 +51,9 @@ const UserClubs = (props) => {
                     })}
 
                 </div>
-
-                <div className="flex flex-col p-2 w-1/6"> {/* Middle Column */}
+                {/* Middle Column */}
+                {/*   
+                <div className="flex flex-col p-2 w-1/6">
                 
                     { clubs.map(({books, _id}) => {
                             
@@ -66,10 +67,10 @@ const UserClubs = (props) => {
                         })
 
                     })}
-
                 </div>
+                */}
 
-                <div className="flex w-4/6 bg-green-300"> {/* Right Column */}
+                <div className="flex w-4/6 h-5/6 justify-center"> {/* Right Column */}
 
                     { clubs.map((club, index) => {
                         
