@@ -38,11 +38,11 @@ const UserClubs = (props) => {
     }
 
     return(
-        <div className="flex w-5/6 p-2 justify-center"> {/* All Columns */}
+        <div className="flex w-full"> {/* All Columns */}
             { clubs.length > 0  && 
             <>
 
-                <div className="flex flex-col w-1/6 p-2"> {/* Left Column */}
+                <div className="flex flex-col w-1/6 gap-3 bg-blue-500 rounded-xl py-8"> {/* Left Column */}
 
                     { clubs.map((club, index) => {
                             
@@ -51,6 +51,7 @@ const UserClubs = (props) => {
                     })}
 
                 </div>
+
                 {/* Middle Column */}
                 {/*   
                 <div className="flex flex-col p-2 w-1/6">
@@ -70,7 +71,7 @@ const UserClubs = (props) => {
                 </div>
                 */}
 
-                <div className="flex w-4/6 h-5/6 justify-center"> {/* Right Column */}
+                <div className="flex w-5/6 bg-green-200 justify-center"> {/* Right Column */}
 
                     { clubs.map((club, index) => {
                         
@@ -87,9 +88,9 @@ const UserClubs = (props) => {
             }
             
             {clubs.length === 0  && 
-                <div>
-                    <div>Oops... It seems like you are not in a club yet</div>
-                    <button>Join a Club now</button>
+                <div className="flex flex-col gap-8 h-4/6 justify-center items-center">
+                    <div className="text-xl font-semibold">Oops... It seems like you are not in a club yet</div>
+                    <button className="bg-blue-400 text-white font-semibold p-2 w-32 rounded-full">Create a Club</button>
                 </div>
             }
 
