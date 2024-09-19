@@ -74,7 +74,7 @@ const Home = () => {
 
             <div className="font-sans flex min-h-screen flex-col w-full bg-neutral-100"> {/* ALL */}
 
-                <div className="pt-28 bg-gradient-to-br from-sky-500 to-indigo-500">
+                <div className="pt-28 bg-gradient-to-br from-sky-500 to-blue-500">
 
                     <div className="flex justify-center">
                         <h2 className="font-bold text-3xl text-white w-4/6 text-center">
@@ -92,8 +92,7 @@ const Home = () => {
                     
                     { isLoadingBooks &&
                         <div className="h-full md:w-5/6 flex justify-center flex-wrap py-6">
-                            <Spinner 
-                                text={"Loading..."} 
+                            <Spinner  
                                 center={false} 
                                 width={"150px"} 
                                 height={"150px"}

@@ -35,13 +35,13 @@ const NavBar = (props) => {
     };
 
     return(
-        <div className={`font-sans font-semibold text-white flex flex-row w-full h-16 fixed z-30 top-0 transition duration-500 ${(props.showNav) && "bg-white"}`}> 
+        <div className={`font-sans font-semibold flex w-full h-16 fixed z-30 top-0 transition duration-500 ${(props.showNav) && "bg-neutral-100"}`}> 
 
             <div className="flex basis-1/3 w-full items-center pl-5 lg:pl-40 gap-4 lg:gap-8"> {/* Left Side */}
                 
                 <NavLink to="/"
                 onClick={goToTopInstant} 
-                className={`h-full lg:h-min w-auto items-center flex text-3xl font-bold transition duration-500 ${(props.showNav) && "text-sky-500"}`}>
+                className={`h-full lg:h-min w-auto items-center flex text-3xl font-bold transition duration-500 text-white ${(props.showNav) && "text-blue-500"}`}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-14 px-1">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                     </svg>
@@ -50,7 +50,7 @@ const NavBar = (props) => {
 
             </div>
 
-            <div className="flex basis-2/3 w-full items-center justify-end lg:pr-40 sm:gap-4"> {/* Right Side */}
+            <div className="flex text-white basis-2/3 w-full items-center justify-end lg:pr-40 sm:gap-4"> {/* Right Side */}
 
                 { user 
                     ?

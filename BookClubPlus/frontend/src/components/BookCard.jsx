@@ -34,7 +34,7 @@ const BookCard = (props) => {
     return (
         <>
         { hasCover &&
-            <Link to = {`${props.book.key}`} className="flex flex-col h-[260px] w-[160px] lg:h-[340px] lg:w-[210px] lg:flex-none m-2 px-2 lg:shadow-md drop-shadow-md rounded-sm bg-white">
+            <Link to = {`${props.book.key}`} className="flex flex-col h-[260px] w-[160px] lg:h-[300px] lg:w-[210px] lg:flex-none m-2 px-2 lg:shadow-md rounded-lg bg-white">
                 
                 <div className="flex h-[130px] lg:h-[170px] justify-center items-center p-2 flex-none">
                     <div className="w-1/2">
