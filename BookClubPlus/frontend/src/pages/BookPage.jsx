@@ -83,11 +83,13 @@ const BookPage = () => {
             <div className="flex flex-col md:w-4/6 w-5/6 py-2">
 
             <>
-                <Link to={`/`} className="flex gap-2 p-2 m-2 w-36 font-bold text-xl items-center justify-start hover:bg-blue-400 rounded-full transition">
-                    <svg class="h-6 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <Link to={`/`} className="flex gap-2 p-2 m-2 w-32 font-bold justify-center hover:bg-blue-300 rounded-full transition">
+                    <svg class="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
                     </svg>
-                    Go back
+                    <div>
+                        Go back
+                    </div>
                 </Link>
                     
                 { book &&

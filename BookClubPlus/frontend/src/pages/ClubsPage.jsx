@@ -11,7 +11,7 @@ const ClubsPage = () => {
     <>
         <NavBar showNav/>
 
-        <div className="font-sans flex min-h-screen"> {/* ALL */}
+        <div className="font-sans bg-neutral-100 flex min-h-screen"> {/* ALL */}
 
             { user && 
                 <UserClubs user={user} />

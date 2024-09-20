@@ -9,6 +9,7 @@ const UserClubs = (props) => {
     const [clubs, setClubs] = useState(0); 
     const [clubSelected, setClubSelected] = useState(0); 
     const [bookSelected, setBookSelected] = useState(0);
+    const [isLoadingClubs, setIsLoadingClubs] = useState(false);  
 
     useEffect(() => {
         
@@ -30,7 +31,7 @@ const UserClubs = (props) => {
 
     const clubSelector = (id) => {
         setClubSelected(id);
-        setBookSelected(0);
+       // setBookSelected(0);
     }
 
     const bookSelector = (id) => {
@@ -38,7 +39,7 @@ const UserClubs = (props) => {
     }
 
     return(
-        <div className="flex w-full pt-20 bg-neutral-100"> {/* All Columns */}
+        <div className="flex w-full pt-20"> {/* All Columns */}
             { clubs.length > 0  && 
             <>
 
