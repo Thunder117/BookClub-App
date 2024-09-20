@@ -1,3 +1,6 @@
+// Components
+import ClubBookCard from "./ClubBookCard";
+
 const ClubDescription = (props) => {
 
     return(
@@ -30,9 +33,14 @@ const ClubDescription = (props) => {
             </div>
 
             <div className="bg-white h-full p-2">
-                <div className="">
-                    {props.club.books[0].bookTitle}
+                
+                <div className="flex items-center gap-2 p-4 h-full">
+                    <ClubBookCard/>
+                    <ClubBookCard/>
+                    <ClubBookCard/>
+                    <ClubBookCard/>
                 </div>
+
             </div>
 
         </div>

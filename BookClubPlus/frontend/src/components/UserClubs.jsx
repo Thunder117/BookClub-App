@@ -34,7 +34,6 @@ const UserClubs = (props) => {
         if(json) {
             clubSelector(json[0]._id);
         }
-        console.log(response);
     
         setIsLoadingClubs(false);
     };
