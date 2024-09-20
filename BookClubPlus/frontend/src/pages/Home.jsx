@@ -115,7 +115,7 @@ const Home = () => {
 
                     { apiAvailable === false &&
                         <div className="h-full md:w-5/6 flex justify-center text-lg font-semibold text-gray-700 py-10">
-                            The api is not responding, please try again in a few moments.
+                            The api is not availabe, please try again in a few moments.
                         </div>
                     }
 
