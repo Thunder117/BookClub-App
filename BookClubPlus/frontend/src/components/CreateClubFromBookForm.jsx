@@ -16,7 +16,7 @@ const CreateClubFromBookForm = (props) => {
         const books = [{
             bookId: props.id,
             bookTitle: props.book.title,
-            bookImage: props.book.cover_i
+            bookImage: props.book.covers[0].toString()
         }]
         const createdBy = props.user.username;
 

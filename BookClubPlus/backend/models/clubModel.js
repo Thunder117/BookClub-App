@@ -14,7 +14,7 @@ const clubSchema = new Schema({
     books: [{ 
         bookId: String,
         bookTitle: String,
-        bookImage: String,
+        bookImage: String
     }],
     members: [{ 
         userId: String,
