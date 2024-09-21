@@ -9,6 +9,7 @@ const BooksShowcase = (props) => {
             { props.books && 
                 props.books.docs.slice(0, 20).map((item, index) => {
                     if(item.author_name && item.cover_i) {
+                        console.log(item.cover_i);
                         return <BookCard key = {index} book = {item}/>
                     }
                     return null;

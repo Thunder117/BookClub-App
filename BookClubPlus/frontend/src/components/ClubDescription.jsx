@@ -34,11 +34,19 @@ const ClubDescription = (props) => {
 
             <div className="bg-white h-full p-2">
                 
-                <div className="flex items-center gap-2 p-4 h-full">
-                    <ClubBookCard/>
-                    <ClubBookCard/>
-                    <ClubBookCard/>
-                    <ClubBookCard/>
+                <div className="flex items-center justify-center gap-4 p-4 h-full">
+                    { props.club &&
+                        props.club.books.map((item, index) => {
+                            console.log(item.bookTitle);
+                            return(
+                                <ClubBookCard 
+                                    id={item.bookId}
+                                    title={item.bookTitle}
+                                    image={item.bookImage}
+                                />
+                            )
+                        })
+                    }
                 </div>
 
             </div>
