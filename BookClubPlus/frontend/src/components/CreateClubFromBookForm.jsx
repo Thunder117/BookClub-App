@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
-// TODO: Style this section more
 const CreateClubFromBookForm = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState(''); 
@@ -49,7 +48,6 @@ const CreateClubFromBookForm = (props) => {
 
     };
 
-    // TODO: change the font and the box size maybe?
     return (
     
         <div className="font-sans h-full flex justify-center items-center pt-20 lg:pt-16">

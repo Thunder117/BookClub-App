@@ -2,23 +2,32 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { Link } from "react-router-dom";
+import { Spinner } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css'
 
 // Components
 import NavBar from '../components/NavBar';
+import Modal from '../components/Modal';
 
 const BookPage = () => {
     const [book, setBook] = useState(); 
+    const [userClubs, setUserClubs] = useState();
+    const [isLoadingClubs, setIsLoadingClubs] = useState(false);  
     const [hasDescription, setHasDescription] = useState(false); 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    
 
     const { user } = useAuthContext();
     const { id } = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        
+        if(user) {
+            fetchUserClubs();
+        }
         fetchAll();
             
-    }, []);
+    }, [user]);
     
     const fetchAll = async () => {
         const book = await fetchBook();
@@ -47,9 +56,20 @@ const BookPage = () => {
         };
 
         if (book.hasOwnProperty("description")) {
-
             checkTypeOfDescription(book);   
+        }
+    };
 
+    const fetchUserClubs = async () => {
+        try {
+            setIsLoadingClubs(true);
+            const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/${user.username}`);
+            const json = await response.json();
+            setUserClubs(json);
+        } catch (error) {
+            console.error('Error fetching user clubs:', error);
+        } finally {
+            setIsLoadingClubs(false); // Ensure loading state is reset after fetching
         }
     };
 
@@ -67,11 +87,14 @@ const BookPage = () => {
         }
     }
 
-    //TODO:
     const checkForUserAddClub = () => {
         if(checkForUserToLink()) { 
-            navigate(`/addtoclub/${id}`);
+            toggleModal();
         }
+    }
+
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
     }
 
     return (
@@ -148,6 +171,35 @@ const BookPage = () => {
             </div>
     
         </div>
+
+        <Modal isOpen={isModalOpen} onClose={toggleModal}>
+            <h2 className="text-xl font-bold mb-4">Add this book to one of your clubs</h2>
+
+            <div className="bg-green-100 flex flex-col gap-2 h-60 overflow-y-auto">
+                { userClubs &&
+                    userClubs.map((club, index) => (
+                        <div key={index} className="bg-red-100 p-2">
+                            <button className="bg-blue-400 hover:bg-blue-500 text-white font-semibold rounded-full px-4 py-2 ">
+                                {club.title} 
+                            </button>
+                        </div>  
+                    ))
+                }
+                { isLoadingClubs &&
+                    <div className="flex justify-center h-full items-center">
+                        <Spinner  
+                            center={false} 
+                            width={"100px"} 
+                            height={"100px"}
+                        />
+                    </div>
+                }
+            </div>
+        
+            <button onClick={toggleModal} className="bg-blue-400 hover:bg-blue-500 transition text-white rounded-full font-bold w-40 p-2 mt-4">
+                Close
+            </button>
+        </Modal>
 
     </>
     );
