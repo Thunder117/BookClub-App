@@ -4,6 +4,7 @@ const express = require('express');
 const {
     getClubs,
     getClubsUser,
+    addBookToClub,
     createClub
 } = require('../controllers/clubController');
 
@@ -19,6 +20,9 @@ router.get('/', getClubs);
 
 // require auth for all of the following routes ------>
 router.use(requireAuth);
+
+//POST add a book to a club
+router.post('/addBook/:clubId', addBookToClub);
 
 // POST a new club
 router.post('/', createClub);

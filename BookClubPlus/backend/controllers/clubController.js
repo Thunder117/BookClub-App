@@ -17,6 +17,29 @@ const getClubsUser = async (req, res) => {
     res.status(200).json(clubs);
 };
 
+const addBookToClub = async (req, res) => {
+    const { clubId } = req.params; // Get the club ID from the request parameters
+    const { bookId, bookTitle, bookImage } = req.body; // Get book details from the request body
+
+    try {
+        // Update the club by adding the book details to its books array
+        const club = await Club.findByIdAndUpdate(
+            clubId,
+            { $addToSet: { books: { bookId, bookTitle, bookImage } } }, // Add the book with details
+            { new: true }
+        );
+
+        if (!club) {
+            return res.status(404).json({ error: 'Club not found' });
+        }
+
+        res.status(200).json(club);
+    } catch (error) {
+        res.status(400).json({ error: `${error.message}` });
+    }
+};
+
+
 // Create a new club
 const createClub = async (req, res) => {
     
@@ -61,5 +84,6 @@ const createClub = async (req, res) => {
 module.exports = {
     getClubs,
     getClubsUser,
+    addBookToClub,
     createClub
 };

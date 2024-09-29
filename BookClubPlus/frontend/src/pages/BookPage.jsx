@@ -73,6 +73,40 @@ const BookPage = () => {
         }
     };
 
+    const handleAddBookToClub = async (clubId) => {
+        if (!user) {
+            navigate(`/login/${id}`);
+            return;
+        }
+    
+        const bookDetails = {
+            bookId: id, // The ID of the book from the Open Library
+            bookTitle: book.title, // Assuming you have the title in the book state
+            bookImage: book.covers ? `https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg` : '' // Image URL
+        };
+    
+        try {
+            const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/addBook/${clubId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`, 
+                },
+                body: JSON.stringify(bookDetails), // Send the book details
+            });
+    
+            const json = await response.json();
+    
+            if (response.ok) {
+                console.log('Book added to club:', json);
+            } else {
+                console.error(json.error);
+            }
+        } catch (error) {
+            console.error('Error adding book to club:', error);
+        }
+    };    
+
     const checkForUserToLink = () => {
         if(user) {
             return true;
@@ -173,32 +207,31 @@ const BookPage = () => {
         </div>
 
         <Modal isOpen={isModalOpen} onClose={toggleModal}>
-            <h2 className="text-xl font-bold mb-4">Add this book to one of your clubs</h2>
+            <h2 className="text-xl text-center font-bold mb-4">Add this book to one of your clubs</h2>
 
-            <div className="bg-green-100 flex flex-col gap-2 h-60 overflow-y-auto">
-                { userClubs &&
-                    userClubs.map((club, index) => (
-                        <div key={index} className="bg-red-100 p-2">
-                            <button className="bg-blue-400 hover:bg-blue-500 text-white font-semibold rounded-full px-4 py-2 ">
-                                {club.title} 
-                            </button>
-                        </div>  
-                    ))
-                }
-                { isLoadingClubs &&
-                    <div className="flex justify-center h-full items-center">
-                        <Spinner  
-                            center={false} 
-                            width={"100px"} 
-                            height={"100px"}
-                        />
+            <div className="flex flex-col gap-2 h-60 overflow-y-auto">
+                {userClubs && userClubs.map((club, index) => (
+                    <div key={index} className="p-2">
+                        <button
+                            onClick={() => handleAddBookToClub(club._id)} // Call the function with the club ID
+                            className="bg-blue-400 hover:bg-blue-500 text-white font-semibold rounded-full px-4 py-2"
+                        >
+                            {club.title}
+                        </button>
                     </div>
-                }
+                ))}
+                {isLoadingClubs && (
+                    <div className="flex justify-center h-full items-center">
+                        <Spinner center={false} width={"100px"} height={"100px"} />
+                    </div>
+                )}
             </div>
-        
-            <button onClick={toggleModal} className="bg-blue-400 hover:bg-blue-500 transition text-white rounded-full font-bold w-40 p-2 mt-4">
-                Close
-            </button>
+
+            <div className='flex justify-end'>
+                <button onClick={toggleModal} className="bg-blue-400 hover:bg-blue-500 transition text-white rounded-full font-bold w-40 p-2 mt-4">
+                    Close
+                </button>
+            </div>
         </Modal>
 
     </>
