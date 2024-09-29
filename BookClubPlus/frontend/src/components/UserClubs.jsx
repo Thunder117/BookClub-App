@@ -52,14 +52,16 @@ const UserClubs = (props) => {
             { clubs.length > 0  && 
             <>
 
-                <div className="flex flex-col w-1/6 gap-3 bg-blue-500 rounded-xl py-8"> {/* Left Column */}
+                <div className="w-1/6 overflow-y-hidden bg-red-100 max-h-full">
+                    <div className="flex flex-col gap-3 h-[640px] overflow-y-auto bg-blue-500 rounded-xl py-10"> {/* Left Column */}
 
-                    { clubs.map((club, index) => {
-                            
-                        return <ClubTitleButton club={club} clubSelected={clubSelected} clubSelector={clubSelector} key={index}/>
-                            
-                    })}
+                        { clubs.map((club, index) => {
+                                
+                            return <ClubTitleButton club={club} clubSelected={clubSelected} clubSelector={clubSelector} key={index}/>
+                                
+                        })}
 
+                    </div>
                 </div>
 
                 <div className="flex w-5/6 justify-center"> {/* Right Column */}
