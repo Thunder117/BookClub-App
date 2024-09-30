@@ -8,6 +8,10 @@ const ClubBookCard = (props) => {
     };
 
     const handleDelete = async () => {
+        if (!props.token) {
+            console.error('Token is missing!');
+            return;
+        }
         try {
             const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/${props.clubId}/removeBook`, {
                 method: 'DELETE',

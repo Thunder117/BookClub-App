@@ -1,7 +1,7 @@
 const Club = require('../models/clubModel');
 const mongoose = require('mongoose');
 
-// get all clubs
+// Get all clubs
 const getClubs = async (req, res) => {
     const clubs = await Club.find({}).sort({createdAt: -1});
 
@@ -17,6 +17,7 @@ const getClubsUser = async (req, res) => {
     res.status(200).json(clubs);
 };
 
+// Add a book to a club
 const addBookToClub = async (req, res) => {
     const { clubId } = req.params; // Get the club ID from the request parameters
     const { bookId, bookTitle, bookImage } = req.body; // Get book details from the request body
@@ -39,6 +40,7 @@ const addBookToClub = async (req, res) => {
     }
 };
 
+// Remove a book from a club
 const removeBookFromClub = async (req, res) => {
     const { clubId } = req.params; // Get the club ID from params
     const { bookId } = req.body;   // Get the book ID from the request body

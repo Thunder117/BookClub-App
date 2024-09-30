@@ -6,8 +6,13 @@ const ClubDescription = (props) => {
 
     const handleBookDeleted = (bookId) => {
         const updatedBooks = props.club.books.filter(book => book.bookId !== bookId);
-        const updatedClub = { ...props.club, books: updatedBooks };
-        props.setClub(updatedClub); 
+        const updatedClubs = props.clubs.map((club) => {
+            if (club._id === props.club._id) {
+                return { ...club, books: updatedBooks };
+            }
+            return club;
+        });
+        props.setClubs(updatedClubs);  // Update the entire clubs array
     };
 
     return(
