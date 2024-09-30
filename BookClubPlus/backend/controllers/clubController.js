@@ -39,6 +39,26 @@ const addBookToClub = async (req, res) => {
     }
 };
 
+const removeBookFromClub = async (req, res) => {
+    const { clubId } = req.params; // Get the club ID from params
+    const { bookId } = req.body;   // Get the book ID from the request body
+
+    try {
+        const club = await Club.findByIdAndUpdate(
+            clubId,
+            { $pull: { books: { bookId } } }, // Remove the book from the club's books array
+            { new: true }
+        );
+
+        if (!club) {
+            return res.status(404).json({ error: 'Club not found' });
+        }
+
+        res.status(200).json(club);
+    } catch (error) {
+        res.status(400).json({ error: `${error.message}` });
+    }
+};
 
 // Create a new club
 const createClub = async (req, res) => {
@@ -85,5 +105,6 @@ module.exports = {
     getClubs,
     getClubsUser,
     addBookToClub,
+    removeBookFromClub,
     createClub
 };

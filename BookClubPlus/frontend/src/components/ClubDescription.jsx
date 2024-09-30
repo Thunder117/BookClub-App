@@ -1,7 +1,14 @@
 // Components
 import ClubBookCard from "./ClubBookCard";
+import UserCard from "./UserCard";
 
 const ClubDescription = (props) => {
+
+    const handleBookDeleted = (bookId) => {
+        const updatedBooks = props.club.books.filter(book => book.bookId !== bookId);
+        const updatedClub = { ...props.club, books: updatedBooks };
+        props.setClub(updatedClub); 
+    };
 
     return(
         <div className={"flex flex-col gap-8 w-full"}>
@@ -22,33 +29,10 @@ const ClubDescription = (props) => {
 
                     <div className="min-h-32 flex gap-4 p-2 overflow-x-auto overflow-y-hidden">
 
-                        <div className="flex flex-col h-28 min-w-24 max-w-24 items-center">
-                            <div className="flex bg-orange-500 text-white text-3xl font-semibold justify-center items-center rounded-full h-20 w-20">
-                                J
-                            </div>
-                            <div className="">
-                                Jhonny
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col h-28 min-w-24 max-w-24 items-center">
-                            <div className="flex bg-purple-500 text-white text-3xl font-semibold justify-center items-center rounded-full h-20 w-20">
-                                C
-                            </div>
-                            <div className="">
-                                Camila
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col h-28 min-w-24 max-w-24 items-center">
-                            <div className="flex bg-green-500 text-white text-3xl font-semibold justify-center items-center rounded-full h-20 w-20">
-                                E
-                            </div>
-                            <div className="">
-                                Erik
-                            </div>
-                        </div>
-
+                        {props.club.members.map((item, index) => {
+                            return <UserCard userName={item.userName}/>
+                            
+                        })}
                         
                     </div>
 
@@ -72,9 +56,13 @@ const ClubDescription = (props) => {
                             return(
                         
                             <ClubBookCard 
+                                key={index}
                                 id={item.bookId}
                                 title={item.bookTitle}
                                 image={item.bookImage}
+                                clubId={props.club._id}
+                                token={props.token} 
+                                onBookDeleted={handleBookDeleted} 
                             />
                           
                             )

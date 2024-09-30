@@ -69,7 +69,7 @@ const UserClubs = (props) => {
                     { clubs.map((club, index) => {
                         
                         if(clubSelected === club._id) {
-                            return <ClubDescription club={club} key={index}/>
+                            return <ClubDescription club={club} key={index} setClub={setClubs}/>
                         }
                         return null;
                             
