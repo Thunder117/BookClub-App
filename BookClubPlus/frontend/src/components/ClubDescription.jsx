@@ -70,49 +70,13 @@ const ClubDescription = (props) => {
                     { props.club &&
                         props.club.books.map((item, index) => {
                             return(
-                            <>
-                                <ClubBookCard 
-                                    id={item.bookId}
-                                    title={item.bookTitle}
-                                    image={item.bookImage}
-                                />
-
-                                <ClubBookCard 
-                                    id={item.bookId}
-                                    title={item.bookTitle}
-                                    image={item.bookImage}
-                                />
-
-                                <ClubBookCard 
-                                    id={item.bookId}
-                                    title={item.bookTitle}
-                                    image={item.bookImage}
-                                />
-
-                                <ClubBookCard 
-                                    id={item.bookId}
-                                    title={item.bookTitle}
-                                    image={item.bookImage}
-                                />
-
-                                <ClubBookCard 
-                                    id={item.bookId}
-                                    title={item.bookTitle}
-                                    image={item.bookImage}
-                                />
-
-                                <ClubBookCard 
-                                    id={item.bookId}
-                                    title={item.bookTitle}
-                                    image={item.bookImage}
-                                />
-
-                                <ClubBookCard 
-                                    id={item.bookId}
-                                    title={item.bookTitle}
-                                    image={item.bookImage}
-                                />
-                            </>          
+                        
+                            <ClubBookCard 
+                                id={item.bookId}
+                                title={item.bookTitle}
+                                image={item.bookImage}
+                            />
+                          
                             )
                         })
                     }

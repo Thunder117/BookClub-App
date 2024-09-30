@@ -15,7 +15,6 @@ const BookPage = () => {
     const [isLoadingClubs, setIsLoadingClubs] = useState(false);  
     const [hasDescription, setHasDescription] = useState(false); 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    
 
     const { user } = useAuthContext();
     const { id } = useParams();
@@ -82,7 +81,7 @@ const BookPage = () => {
         const bookDetails = {
             bookId: id, // The ID of the book from the Open Library
             bookTitle: book.title, // Assuming you have the title in the book state
-            bookImage: book.covers ? `https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg` : '' // Image URL
+            bookImage: book.covers[0]
         };
     
         try {
@@ -102,6 +101,8 @@ const BookPage = () => {
             } else {
                 console.error(json.error);
             }
+
+            navigate('/clubs');
         } catch (error) {
             console.error('Error adding book to club:', error);
         }
@@ -164,7 +165,7 @@ const BookPage = () => {
                                 </button>
                             </div>
 
-                            <div className="w-full max-h-96 flex justify-center">
+                            <div className="w-full min-h-96 max-h-96 flex justify-center">
                                 <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="rounded-md h-full select-none" />
                             </div>
                             
