@@ -4,13 +4,11 @@ import 'react-spinner-animated/dist/index.css'
 
 // Components
 import ClubTitleButton from '../components/ClubTitleButton';
-import BookTitleButton from '../components/BookTitleButton';
 import ClubDescription from '../components/ClubDescription';
 
 const UserClubs = (props) => {
     const [clubs, setClubs] = useState(0); 
     const [clubSelected, setClubSelected] = useState(0); 
-    const [bookSelected, setBookSelected] = useState(0);
     const [isLoadingClubs, setIsLoadingClubs] = useState(false);  
 
     useEffect(() => {
@@ -40,10 +38,6 @@ const UserClubs = (props) => {
 
     const clubSelector = (id) => {
         setClubSelected(id);
-    }
-
-    const bookSelector = (id) => {
-        //setBookSelected(id);
     }
 
     return(

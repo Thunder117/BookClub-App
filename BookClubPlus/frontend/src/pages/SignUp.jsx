@@ -15,7 +15,7 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await signup(username, email, password);
+        await signup(username, email.toLowerCase(), password);
     };
 
     // TODO: give a link to login

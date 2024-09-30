@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 const ClubBookCard = (props) => {
     const [showDeleteOption, setShowDeleteOption] = useState(false); // Toggle for delete option
-
+    
     const toggleDeleteOption = () => {
         setShowDeleteOption(!showDeleteOption); // Toggle the visibility of the delete option
     };
@@ -35,17 +36,9 @@ const ClubBookCard = (props) => {
     };
 
     return (
-        <div className="relative flex justify-center items-center h-80 min-w-56">
-            <button className="bg-neutral-100 flex flex-col h-72 w-52 rounded-lg ease-out duration-500 hover:h-80 hover:w-56">
-                
-                <div className="flex w-full justify-end">
-                    <button onClick={toggleDeleteOption} className="flex justify-center w-10 h-full">
-                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
-                        </svg>
-                    </button>
-                </div>
+        <div className="relative flex flex-col gap-2 justify-center items-center h-80 min-w-56">
 
+            <div className="flex w-full justify-end">
                 {showDeleteOption && (
                     <div className="absolute top-0 right-0 bg-white shadow-md p-2 rounded-md">
                         <button
@@ -62,6 +55,14 @@ const ClubBookCard = (props) => {
                         </button>
                     </div>
                 )}
+                <button onClick={toggleDeleteOption} className="flex justify-center w-10 h-full">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
+                    </svg>
+                </button>
+            </div>
+
+            <Link to = {`../works/${props.id}`} className="bg-neutral-100 flex flex-col h-72 w-52 rounded-lg ease-out duration-500 hover:h-80 hover:w-56">
 
                 <div className="flex justify-center w-full h-60">
                     <img 
@@ -74,7 +75,7 @@ const ClubBookCard = (props) => {
                     {props.title}
                 </div>
 
-            </button>
+            </Link>
         </div>
     );
 };

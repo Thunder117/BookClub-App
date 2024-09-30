@@ -17,7 +17,7 @@ const LogIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await login(email, password);
+        await login(email.toLowerCase(), password);
 
         if(id) {
             navigate(`/createclub/${id}`);
