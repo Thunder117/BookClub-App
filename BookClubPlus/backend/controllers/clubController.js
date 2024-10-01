@@ -103,10 +103,29 @@ const createClub = async (req, res) => {
     }
 };
 
+// Delete a club
+const deleteClub = async (req, res) => {
+    const { clubId } = req.params;
+
+    try {
+        // Find and delete the club by its ID
+        const club = await Club.findByIdAndDelete(clubId);
+
+        if (!club) {
+            return res.status(404).json({ error: 'Club not found' });
+        }
+
+        res.status(200).json({ message: 'Club successfully deleted' });
+    } catch (error) {
+        res.status(400).json({ error: `${error.message}` });
+    }
+};
+
 module.exports = {
     getClubs,
     getClubsUser,
     addBookToClub,
     removeBookFromClub,
-    createClub
+    createClub,
+    deleteClub
 };
