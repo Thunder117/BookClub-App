@@ -5,6 +5,7 @@ import 'react-spinner-animated/dist/index.css'
 // Components
 import ClubTitleButton from '../components/ClubTitleButton';
 import ClubDescription from '../components/ClubDescription';
+import { Link } from 'react-router-dom';
 
 const UserClubs = (props) => {
     const [clubs, setClubs] = useState(0); 
@@ -85,7 +86,7 @@ const UserClubs = (props) => {
             {clubs.length === 0  && 
                 <div className="flex flex-col gap-8 w-full h-4/6 justify-center items-center">
                     <div className="text-xl font-semibold">Oops... It looks like you are not in a club yet</div>
-                    <button className="bg-blue-400 text-white font-semibold p-2 w-32 rounded-full">Create a Club</button>
+                    <Link to={'/'} className="bg-blue-500 text-white font-semibold px-4 py-2 text-center rounded-full">Create a Club</Link>
                 </div>
             }
 
