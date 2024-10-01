@@ -7,7 +7,7 @@ import NavBar from '../components/NavBar';
 import CreateClubFromBookForm from '../components/CreateClubFromBookForm';
 
 const CreateClubFromBookPage = () => {
-    const [book, setBook] = useState(); 
+    const [book, setBook] = useState();
 
     const { user } = useAuthContext();
     const { id } = useParams();

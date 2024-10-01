@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { Spinner } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css'
 
 const CreateClubFromBookForm = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState(''); 
+    const [isLoading, setIsLoading] = useState(false);  
     const [emptyFields, setEmptyFields ] = useState([]);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
  
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading(true);
 
         const books = [{
             bookId: props.id,
@@ -45,12 +49,20 @@ const CreateClubFromBookForm = (props) => {
 
             navigate('/clubs');
         }
-
+        setIsLoading(false);
     };
 
     return (
     
         <div className="font-sans h-full flex justify-center items-center pt-20 lg:pt-16">
+
+            { isLoading && 
+                 <Spinner  
+                    center={true} 
+                    width={"150px"} 
+                    height={"150px"}
+                />
+            }
           
             <div className="w-full h-full sm:w-[500px] sm:h-[500px] px-6 sm:py-4 sm:rounded-md drop-shadow-2xl bg-neutral-100">
                 
