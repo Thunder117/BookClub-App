@@ -21,6 +21,7 @@ const Home = () => {
 
     const fetchBook = async (e) => {
         e.preventDefault();
+        if((textValue === "") || (textValue.length < 2)) return;
 
         setBooks();
         setApiAvailable();

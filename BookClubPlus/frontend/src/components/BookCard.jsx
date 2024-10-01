@@ -49,7 +49,7 @@ const BookCard = (props) => {
                         {props.book.title}
                     </div>
 
-                    <div className="max-h-20 line-clamp-2 lg:line-clamp-3 text-gray-500 text-md font-semibold text-center">
+                    <div className="max-h-20 text-gray-500 truncate text-md font-semibold text-center">
                         by {props.book.author_name}
                     </div>
                 
