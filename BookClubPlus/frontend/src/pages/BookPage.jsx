@@ -46,10 +46,8 @@ const BookPage = () => {
 
         const checkTypeOfDescription = (book) => {
             if(book.description.value) {
-                console.log("Value description");
                 setHasDescription("Value Description");
             } else {
-                console.log("Regular description");
                 setHasDescription("Regular Description");
             }
         };
@@ -211,10 +209,15 @@ const BookPage = () => {
             <h2 className="text-xl text-center font-bold mb-4">Add this book to one of your clubs</h2>
 
             <div className="flex flex-col gap-2 h-60 overflow-y-auto">
+                {userClubs && userClubs.length === 0 &&
+                    <div className='h-full flex justify-center items-center'>
+                        Oops, it looks like you still don't have any clubs!
+                    </div>
+                }
                 {userClubs && userClubs.map((club, index) => (
                     <div key={index} className="p-2">
                         <button
-                            onClick={() => handleAddBookToClub(club._id)} // Call the function with the club ID
+                            onClick={() => handleAddBookToClub(club._id)} 
                             className="bg-blue-400 hover:bg-blue-500 text-white font-semibold rounded-full px-4 py-2"
                         >
                             {club.title}
