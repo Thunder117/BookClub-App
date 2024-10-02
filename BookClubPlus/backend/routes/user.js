@@ -10,11 +10,11 @@ const {
 
 const router = express.Router();
 
-// get username route
-router.get('/:id', getUsername);
-
 // search users by username
 router.get('/search', searchUsers);
+
+// get username route
+router.get('/:id', getUsername);
 
 // login route
 router.post('/login', loginUser);

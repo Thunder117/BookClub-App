@@ -71,6 +71,7 @@ const ClubDescription = (props) => {
             });
             
             const data = await response.json();
+            console.log(data)
             if (response.ok) {
                 setUsers(data);
             } else {
@@ -176,7 +177,7 @@ const ClubDescription = (props) => {
 
             <Modal isOpen={isAddModalOpen} onClose={toggleAddModal}>
                 <h2 className="text-xl text-center font-bold mb-4">Add a user to your club</h2>
-                <div className="bg-green-100 flex justify-center">
+                <div className="flex justify-center">
                     <SearchBar 
                         search={fetchUsers} 
                         textValue={textValue} 
