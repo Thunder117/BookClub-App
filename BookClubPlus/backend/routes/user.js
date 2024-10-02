@@ -13,7 +13,7 @@ const router = express.Router();
 // get username route
 router.get('/:id', getUsername);
 
-// Search users by username
+// search users by username
 router.get('/search', searchUsers);
 
 // login route

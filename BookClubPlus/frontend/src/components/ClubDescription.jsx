@@ -59,31 +59,29 @@ const ClubDescription = (props) => {
 
     const fetchUsers = async (e) => {
         e.preventDefault();
-        if((textValue === "") || (textValue.length < 2)) return;
-        setIsLoadingUsers(true);
-    
+        if (textValue === "" || textValue.length < 2) return;
+        console.log(`Searching for username: ${textValue}`);
+
         try {
-            const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/users/search?username=${textValue}`, {
+            const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/user/search?username=${textValue}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${props.token}`,
                 }
             });
-    
+            
             const data = await response.json();
-    
             if (response.ok) {
-                setUsers(data);  // Set the fetched users in state
+                setUsers(data);
             } else {
                 setUsers([]);  // No users found
             }
         } catch (error) {
             console.error('Error fetching users:', error);
-            setUsers([]);  // Set an empty array if there's an error
-        } finally {
-            setIsLoadingUsers(false);
+            setUsers([]);
         }
-    };    
+    };
+    
 
     const toggleDeleteModal = () => {
         setDeleteModal(!isDeleteModalOpen);

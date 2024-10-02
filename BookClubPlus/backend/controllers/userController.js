@@ -26,14 +26,15 @@ const getUsername = async (req, res) => {
 // Search users by username
 const searchUsers = async (req, res) => {
     const { username } = req.query;
-
+    console.log(req.query.username);  // To ensure the username query param is received correctly
     try {
-        const users = await User.find({ username: { $regex: username, $options: 'i' } });
+        const users = await User.find({ username: { $regex: `^${username}`, $options: 'i' } }); // Match start of username
         res.status(200).json(users);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
+
 
 // login user
 const loginUser = async (req, res) => {
