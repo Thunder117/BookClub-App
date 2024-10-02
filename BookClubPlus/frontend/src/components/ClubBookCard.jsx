@@ -72,7 +72,9 @@ const ClubBookCard = (props) => {
                     />
                 </div>
                 <div className="w-full h-full flex items-center justify-center">
-                    {props.title}
+                    <div className="max-w-lg truncate">
+                        {props.title}
+                    </div>
                 </div>
 
             </Link>
