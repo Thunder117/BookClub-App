@@ -1,9 +1,13 @@
 import { useState } from "react";
+
+// Components
 import ClubBookCard from "./ClubBookCard";
 import UserCard from "./UserCard";
+import Modal from '../components/Modal';
 
 const ClubDescription = (props) => {
     const [showEditOptions, setShowEditOptions] = useState(false); // State to toggle edit options
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleEditOptions = () => {
         setShowEditOptions(!showEditOptions);
@@ -46,7 +50,12 @@ const ClubDescription = (props) => {
         }
     };
 
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    }
+
     return (
+        <>
         <div className={"flex flex-col gap-8 w-full"}>
             <div className="flex justify-center">
                 <div className="flex flex-col bg-white min-h-52 max-h-52 w-[580px] p-3 mx-4 rounded-xl shadow-md">
@@ -76,7 +85,7 @@ const ClubDescription = (props) => {
                                     Add Member
                                 </button>
                                 <button
-                                    onClick={handleDeleteClub}
+                                    onClick={toggleModal}
                                     className="bg-red-500 text-white px-4 py-2 rounded-full h-full hover:bg-red-600"
                                 >
                                     Delete Club
@@ -115,6 +124,19 @@ const ClubDescription = (props) => {
                 </div>
             </div>
         </div>
+
+        <Modal isOpen={isModalOpen} onClose={toggleModal}>
+            <h2 className="text-xl text-center font-bold mb-4">Do you really want to delete this club?</h2>
+            <div className='flex justify-center gap-4 p-4 bg-red-100'>
+                <button onClick={handleDeleteClub} className="bg-red-500 hover:bg-red-600 transition text-white rounded-full font-semibold px-4 py-2">
+                        Delete Club
+                </button>
+                <button onClick={toggleModal} className="bg-gray-500 hover:bg-gray-600 transition text-white rounded-full font-semibold px-4 py-2">
+                    Cancel
+                </button>
+            </div>
+        </Modal>
+        </>
     );
 }
 
