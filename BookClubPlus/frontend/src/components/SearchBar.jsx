@@ -10,7 +10,7 @@ const SearchBar = (props) => {
                     type='text'
                     onChange={(e) => props.setTextValue(e.target.value)}
                     value={props.textValue}
-                    placeholder="The Name of the Wind..."
+                    placeholder="The Lord of the Rings..."
                     className="rounded-full w-full h-12 px-10 text-base"
                 />
 

@@ -139,8 +139,8 @@ const BookPage = () => {
             <div className="flex flex-col md:w-4/6 w-5/6 py-2">
 
             <>
-                <Link to={`/`} className="flex gap-2 p-2 m-2 w-32 font-bold justify-center hover:bg-blue-300 rounded-full transition">
-                    <svg class="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <Link to={`/`} className="flex gap-2 p-2 m-2 w-32 font-bold justify-center hover:text-white duration-300 hover:bg-gray-600 rounded-full transition">
+                    <svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
                     </svg>
                     <div>
@@ -154,11 +154,11 @@ const BookPage = () => {
 
                         <div className="flex flex-col sm:w-1/3 justify-center flex-none">
                             <div className="flex flex-col px-2 py-2 my-4 gap-4">
-                                <button onClick={checkForUserCreateClub} className="bg-blue-400 hover:bg-blue-500 transition text-white rounded-full font-bold px-6 py-2">
+                                <button onClick={checkForUserCreateClub} className="bg-blue-500 hover:bg-blue-600 transition text-white rounded-full font-bold px-6 py-2">
                                     Create a club with this book
                                 </button>
 
-                                <button onClick={checkForUserAddClub} className="bg-blue-400 hover:bg-blue-500 transition text-white rounded-full font-bold px-6 py-2">
+                                <button onClick={checkForUserAddClub} className="bg-blue-500 hover:bg-blue-600 transition text-white rounded-full font-bold px-6 py-2">
                                     Add this book to one of your clubs
                                 </button>
                             </div>
@@ -218,7 +218,7 @@ const BookPage = () => {
                     <div key={index} className="p-2">
                         <button
                             onClick={() => handleAddBookToClub(club._id)} 
-                            className="bg-blue-400 hover:bg-blue-500 text-white font-semibold rounded-full px-4 py-2"
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full px-4 py-2"
                         >
                             {club.title}
                         </button>
@@ -232,7 +232,7 @@ const BookPage = () => {
             </div>
 
             <div className='flex justify-end'>
-                <button onClick={toggleModal} className="bg-blue-400 hover:bg-blue-500 transition text-white rounded-full font-bold w-40 p-2 mt-4">
+                <button onClick={toggleModal} className="bg-blue-500 hover:bg-blue-600 transition text-white rounded-full font-bold w-40 p-2 mt-4">
                     Close
                 </button>
             </div>

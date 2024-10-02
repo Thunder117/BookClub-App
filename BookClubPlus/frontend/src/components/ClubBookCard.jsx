@@ -40,16 +40,16 @@ const ClubBookCard = (props) => {
 
             <div className="flex w-full justify-end">
                 {showDeleteOption && (
-                    <div className="absolute top-0 right-0 bg-white shadow-md p-2 rounded-md">
+                    <div className="absolute top-0 right-0 bg-neutral-100 shadow-md p-2 flex gap-2 rounded-lg">
                         <button
                             onClick={handleDelete}
-                            className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
+                            className="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600"
                         >
                             Delete
                         </button>
                         <button
                             onClick={toggleDeleteOption}
-                            className="ml-2 bg-gray-300 text-black px-2 py-1 rounded hover:bg-gray-400"
+                            className="bg-gray-500 text-white px-4 py-2 rounded-full hover:bg-gray-600"
                         >
                             Cancel
                         </button>

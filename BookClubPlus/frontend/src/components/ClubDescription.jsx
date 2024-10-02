@@ -70,14 +70,11 @@ const ClubDescription = (props) => {
                     </div>
 
                     <div className="flex gap-2 p-2 justify-end items-end h-full">
-                        <button className="flex justify-center bg-blue-500 hover:bg-blue-600 transition text-white px-4 py-2 shadow-md rounded-full text-s">
-                            Add Member
-                        </button>
-                        <button onClick={toggleEditOptions} className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
-                            Edit
-                        </button>
-                        {showEditOptions &&
+                    {showEditOptions &&
                             <div className="flex gap-2">
+                                <button className="flex justify-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
+                                    Add Member
+                                </button>
                                 <button
                                     onClick={handleDeleteClub}
                                     className="bg-red-500 text-white px-4 py-2 rounded-full h-full hover:bg-red-600"
@@ -92,6 +89,9 @@ const ClubDescription = (props) => {
                             </button>
                         </div>
                         }
+                        <button onClick={toggleEditOptions} className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
+                            Edit
+                        </button>
                     </div>
 
                 </div>
