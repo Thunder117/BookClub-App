@@ -1,13 +1,20 @@
 import { useState } from "react";
+import { Spinner } from 'react-spinner-animated';
+import 'react-spinner-animated/dist/index.css'
 
 // Components
 import ClubBookCard from "./ClubBookCard";
 import UserCard from "./UserCard";
 import Modal from '../components/Modal';
+import SearchBar from "./SearchBar";
 
 const ClubDescription = (props) => {
-    const [showEditOptions, setShowEditOptions] = useState(false); // State to toggle edit options
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showEditOptions, setShowEditOptions] = useState(false);
+    const [isDeleteModalOpen, setDeleteModal] = useState(false);
+    const [isAddModalOpen, setAddModal] = useState(false);
+    const [textValue, setTextValue] = useState("");
+    const [users, setUsers] =useState()
+    const [isLoadingUsers, setIsLoadingUsers] = useState(false);  
 
     const toggleEditOptions = () => {
         setShowEditOptions(!showEditOptions);
@@ -50,92 +57,163 @@ const ClubDescription = (props) => {
         }
     };
 
-    const toggleModal = () => {
-        setIsModalOpen(!isModalOpen);
+    const fetchUsers = async (e) => {
+        e.preventDefault();
+        if((textValue === "") || (textValue.length < 2)) return;
+        setIsLoadingUsers(true);
+    
+        try {
+            const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/users/search?username=${textValue}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${props.token}`,
+                }
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                setUsers(data);  // Set the fetched users in state
+            } else {
+                setUsers([]);  // No users found
+            }
+        } catch (error) {
+            console.error('Error fetching users:', error);
+            setUsers([]);  // Set an empty array if there's an error
+        } finally {
+            setIsLoadingUsers(false);
+        }
+    };    
+
+    const toggleDeleteModal = () => {
+        setDeleteModal(!isDeleteModalOpen);
+    }
+
+    const toggleAddModal = () => {
+        setAddModal(!isAddModalOpen);
     }
 
     return (
         <>
-        <div className={"flex flex-col gap-8 w-full"}>
-            <div className="flex justify-center">
-                <div className="flex flex-col bg-white min-h-52 max-h-52 w-[580px] p-3 mx-4 rounded-xl shadow-md">
+            <div className={"flex flex-col gap-8 w-full"}>
+                <div className="flex justify-center">
+                    <div className="flex flex-col bg-white min-h-52 max-h-52 w-[580px] p-3 mx-4 rounded-xl shadow-md">
 
-                    <div className="font-semibold p-2 text-3xl">
-                        {props.club.title}
+                        <div className="font-semibold p-2 text-3xl">
+                            {props.club.title}
+                        </div>
+
+                        <div className="p-2 overflow-x-hidden overflow-auto text-ellipsis">
+                            {props.club.description}
+                        </div>
+
                     </div>
 
-                    <div className="p-2 overflow-x-hidden overflow-auto text-ellipsis">
-                        {props.club.description}
-                    </div>
+                    <div className="flex flex-col bg-white min-h-52 max-h-52 w-[580px] p-3 mx-4 rounded-xl shadow-md">
 
-                </div>
+                        <div className="min-h-32 flex gap-4 p-2 overflow-x-auto overflow-y-hidden">
+                            {props.club.members.map((item, index) => {
+                                return <UserCard key={index} userName={item.userName}/>
+                            })}
+                        </div>
 
-                <div className="flex flex-col bg-white min-h-52 max-h-52 w-[580px] p-3 mx-4 rounded-xl shadow-md">
-
-                    <div className="min-h-32 flex gap-4 p-2 overflow-x-auto overflow-y-hidden">
-                        {props.club.members.map((item, index) => {
-                            return <UserCard key={index} userName={item.userName}/>
-                        })}
-                    </div>
-
-                    <div className="flex gap-2 p-2 justify-end items-end h-full">
-                    {showEditOptions &&
-                            <div className="flex gap-2">
-                                <button className="flex justify-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
-                                    Add Member
+                        <div className="flex gap-2 p-2 justify-end items-end h-full">
+                        {showEditOptions &&
+                                <div className="flex gap-2">
+                                    <button onClick={toggleAddModal} className="flex justify-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
+                                        Add Member
+                                    </button>
+                                    <button
+                                        onClick={toggleDeleteModal}
+                                        className="bg-red-500 text-white px-4 py-2 rounded-full h-full hover:bg-red-600"
+                                    >
+                                        Delete Club
+                                    </button>
+                                    <button
+                                        onClick={toggleEditOptions}
+                                        className="bg-gray-500 text-white px-4 py-2 rounded-full h-full hover:bg-gray-600"
+                                    >
+                                        Cancel
                                 </button>
-                                <button
-                                    onClick={toggleModal}
-                                    className="bg-red-500 text-white px-4 py-2 rounded-full h-full hover:bg-red-600"
-                                >
-                                    Delete Club
-                                </button>
-                                <button
-                                    onClick={toggleEditOptions}
-                                    className="bg-gray-500 text-white px-4 py-2 rounded-full h-full hover:bg-gray-600"
-                                >
-                                    Cancel
+                            </div>
+                            }
+                            <button onClick={toggleEditOptions} className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
+                                Edit
                             </button>
                         </div>
-                        }
-                        <button onClick={toggleEditOptions} className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
-                            Edit
+
+                    </div>
+                </div>
+
+                <div className="bg-white h-full p-2 overflow-x-auto overflow-y-hidden">
+                    <div className="flex items-center justify-start gap-4 p-4 h-full">
+                        {props.club && props.club.books.map((item, index) => {
+                            return (
+                                <ClubBookCard
+                                    key={index}
+                                    id={item.bookId}
+                                    title={item.bookTitle}
+                                    image={item.bookImage}
+                                    clubId={props.club._id}
+                                    token={props.token}
+                                    onBookDeleted={handleBookDeleted}
+                                />
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
+
+            <Modal isOpen={isDeleteModalOpen} onClose={toggleDeleteModal}>
+                <h2 className="text-xl text-center font-bold mb-4">Do you really want to delete this club?</h2>
+                <div className='flex justify-center gap-4 p-4'>
+                    <button onClick={handleDeleteClub} className="bg-red-500 hover:bg-red-600 transition text-white rounded-full font-semibold px-4 py-2">
+                        Delete Club
+                    </button>
+                    <button onClick={toggleDeleteModal} className="bg-gray-500 hover:bg-gray-600 transition text-white rounded-full font-semibold px-4 py-2">
+                        Cancel
+                    </button>
+                </div>
+            </Modal>
+
+            <Modal isOpen={isAddModalOpen} onClose={toggleAddModal}>
+                <h2 className="text-xl text-center font-bold mb-4">Add a user to your club</h2>
+                <div className="bg-green-100 flex justify-center">
+                    <SearchBar 
+                        search={fetchUsers} 
+                        textValue={textValue} 
+                        setTextValue={setTextValue}
+                        placeHolder="John Smith..."
+                    />
+                </div>
+                <div className="flex flex-col gap-2 h-60 overflow-y-auto">
+                {users && users.length === 0 &&
+                    <div className='h-full flex justify-center items-center'>
+                        We couldn't find that username
+                    </div>
+                }
+                {users && users.map((user, index) => (
+                    <div key={index} className="p-2">
+                        <button
+                            onClick={() => fetchUsers(user._id)} 
+                            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full px-4 py-2"
+                        >
+                            {user.username}
                         </button>
                     </div>
-
+                ))}
+                {isLoadingUsers && (
+                    <div className="flex justify-center h-full items-center">
+                        <Spinner center={false} width={"100px"} height={"100px"} />
+                    </div>
+                )}
                 </div>
-            </div>
-
-            <div className="bg-white h-full p-2 overflow-x-auto overflow-y-hidden">
-                <div className="flex items-center justify-start gap-4 p-4 h-full">
-                    {props.club && props.club.books.map((item, index) => {
-                        return (
-                            <ClubBookCard
-                                key={index}
-                                id={item.bookId}
-                                title={item.bookTitle}
-                                image={item.bookImage}
-                                clubId={props.club._id}
-                                token={props.token}
-                                onBookDeleted={handleBookDeleted}
-                            />
-                        )
-                    })}
+                <div className='flex justify-center p-2'>
+                    <button onClick={toggleAddModal} className="bg-gray-500 hover:bg-gray-600 transition text-white rounded-full font-semibold px-4 py-2">
+                        Cancel
+                    </button>
                 </div>
-            </div>
-        </div>
-
-        <Modal isOpen={isModalOpen} onClose={toggleModal}>
-            <h2 className="text-xl text-center font-bold mb-4">Do you really want to delete this club?</h2>
-            <div className='flex justify-center gap-4 p-4 bg-red-100'>
-                <button onClick={handleDeleteClub} className="bg-red-500 hover:bg-red-600 transition text-white rounded-full font-semibold px-4 py-2">
-                        Delete Club
-                </button>
-                <button onClick={toggleModal} className="bg-gray-500 hover:bg-gray-600 transition text-white rounded-full font-semibold px-4 py-2">
-                    Cancel
-                </button>
-            </div>
-        </Modal>
+            </Modal>
         </>
     );
 }

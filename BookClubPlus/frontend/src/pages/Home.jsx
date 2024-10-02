@@ -84,7 +84,12 @@ const Home = () => {
                     </div>
 
                     <div className="flex justify-center mb-4">
-                        <SearchBar fetchBook={fetchBook} textValue={textValue} setTextValue={setTextValue}/>
+                        <SearchBar 
+                            search={fetchBook} 
+                            textValue={textValue} 
+                            setTextValue={setTextValue}
+                            placeHolder="The Lord of the Rings..."
+                        />
                     </div>
 
                 </div>

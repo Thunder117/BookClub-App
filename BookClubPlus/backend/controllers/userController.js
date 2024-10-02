@@ -23,6 +23,18 @@ const getUsername = async (req, res) => {
     res.status(200).json(user.username);
 };
 
+// Search users by username
+const searchUsers = async (req, res) => {
+    const { username } = req.query;
+
+    try {
+        const users = await User.find({ username: { $regex: username, $options: 'i' } });
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
 // login user
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
@@ -55,4 +67,4 @@ const signupUser = async (req, res) => {
     }
 };
 
-module.exports = { getUsername, signupUser, loginUser };
+module.exports = { getUsername, searchUsers, signupUser, loginUser };

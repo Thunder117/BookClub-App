@@ -2,7 +2,7 @@
 const SearchBar = (props) => {
 
     return (
-        <form className="flex w-4/5 md:w-2/5 my-4 font-bold" onSubmit={props.fetchBook}>
+        <form className="flex w-4/5 md:w-3/5 my-4 font-bold" onSubmit={props.search}>
                                 
             <div className="relative flex w-full">
             
@@ -10,8 +10,8 @@ const SearchBar = (props) => {
                     type='text'
                     onChange={(e) => props.setTextValue(e.target.value)}
                     value={props.textValue}
-                    placeholder="The Lord of the Rings..."
-                    className="rounded-full w-full h-12 px-10 text-base"
+                    placeholder={props.placeHolder}
+                    className="rounded-full border-2 border-blue-500 w-full h-12 px-10 text-base"
                 />
 
                 <button className="absolute top-3 right-3 text-sky-600" >

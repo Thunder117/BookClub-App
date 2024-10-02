@@ -1,12 +1,20 @@
 const express = require('express');
 
 // controller functions
-const { getUsername, signupUser, loginUser } = require('../controllers/userController');
+const { 
+    getUsername, 
+    searchUsers,
+    signupUser, 
+    loginUser 
+} = require('../controllers/userController');
 
 const router = express.Router();
 
 // get username route
 router.get('/:id', getUsername);
+
+// Search users by username
+router.get('/search', searchUsers);
 
 // login route
 router.post('/login', loginUser);
