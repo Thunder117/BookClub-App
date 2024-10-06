@@ -65,7 +65,8 @@ const removeBookFromClub = async (req, res) => {
 const addMemberToClub = async (req, res) => {
     const { clubId, userId } = req.body;
 
-    console.log(clubId, userId);
+    console.log(clubId);
+    console.log(userId);
     try {
         const club = await Club.findById(clubId);
         if (!club) {

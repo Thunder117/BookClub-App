@@ -91,9 +91,6 @@ const ClubDescription = (props) => {
             console.error('Token is missing!');
             return;
         }
-        
-        //console.log("props.club._id: " + props.club._id);
-        //console.log("userId: " + userId);
 
         try {
             const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/addMember`, {
