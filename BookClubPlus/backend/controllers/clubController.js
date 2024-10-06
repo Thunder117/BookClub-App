@@ -62,6 +62,32 @@ const removeBookFromClub = async (req, res) => {
     }
 };
 
+const addMemberToClub = async (req, res) => {
+    const { clubId, userId } = req.body;
+
+    try {
+        const club = await Club.findById(clubId);
+        if (!club) {
+            return res.status(404).json({ error: 'Club not found' });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (!club.members.some(member => member.userId.toString() === userId)) {
+            club.members.push({ userId: user._id, userName: user.username });
+            await club.save();
+            return res.status(200).json(club);
+        } else {
+            return res.status(400).json({ error: 'User is already a member of this club' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 // Create a new club
 const createClub = async (req, res) => {
     
@@ -126,6 +152,7 @@ module.exports = {
     getClubsUser,
     addBookToClub,
     removeBookFromClub,
+    addMemberToClub,
     createClub,
     deleteClub
 };

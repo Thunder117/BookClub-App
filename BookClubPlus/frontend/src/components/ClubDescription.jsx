@@ -59,6 +59,9 @@ const ClubDescription = (props) => {
 
     const fetchUsers = async (e) => {
         e.preventDefault();
+        setUsers();
+        setIsLoadingUsers(true);
+
         if (textValue === "" || textValue.length < 2) return;
         console.log(`Searching for username: ${textValue}`);
 
@@ -81,9 +84,45 @@ const ClubDescription = (props) => {
             console.error('Error fetching users:', error);
             setUsers([]);
         }
+
+        setIsLoadingUsers(false);
+    };
+
+    const addUser = async (userId) => {
+        if (!props.token) {
+            console.error('Token is missing!');
+            return;
+        }
+    
+        try {
+            const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/addMember`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${props.token}`,
+                },
+                body: JSON.stringify({
+                    clubId: props.club._id,
+                    userId: userId,
+                }),
+            });
+    
+            if (response.ok) {
+                const updatedClub = await response.json();
+                // Assuming `updatedClub` returns the club with updated members list
+                const updatedClubs = props.clubs.map((club) =>
+                    club._id === updatedClub._id ? updatedClub : club
+                );
+                props.setClubs(updatedClubs);
+                toggleAddModal();  // Close the modal after adding the user
+            } else {
+                console.error('Error adding user to the club');
+            }
+        } catch (error) {
+            console.error('Error adding user to the club:', error);
+        }
     };
     
-
     const toggleDeleteModal = () => {
         setDeleteModal(!isDeleteModalOpen);
     }
@@ -137,7 +176,7 @@ const ClubDescription = (props) => {
                             </div>
                             }
                             <button onClick={toggleEditOptions} className="flex justify-center items-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
-                                Edit
+                                {showEditOptions ? "Hide Options" : "Show Options"}
                             </button>
                         </div>
 
@@ -194,7 +233,7 @@ const ClubDescription = (props) => {
                 {users && users.map((user, index) => (
                     <div key={index} className="p-2">
                         <button
-                            onClick={() => fetchUsers(user._id)} 
+                            onClick={() => addUser(user._id)} 
                             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full px-4 py-2"
                         >
                             {user.username}

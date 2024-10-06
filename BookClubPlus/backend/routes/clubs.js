@@ -6,6 +6,7 @@ const {
     getClubsUser,
     addBookToClub,
     removeBookFromClub,
+    addMemberToClub,
     createClub,
     deleteClub
 } = require('../controllers/clubController');
@@ -28,6 +29,9 @@ router.delete('/:clubId/removeBook', removeBookFromClub);
 
 // POST add a book to a club
 router.post('/addBook/:clubId', addBookToClub);
+
+//POST add a user to a club
+router.post('/clubs/addMember', addMemberToClub);
 
 // POST a new club
 router.post('/', createClub);
