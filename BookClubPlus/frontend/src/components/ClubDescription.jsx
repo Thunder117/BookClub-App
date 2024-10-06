@@ -63,7 +63,6 @@ const ClubDescription = (props) => {
         setIsLoadingUsers(true);
 
         if (textValue === "" || textValue.length < 2) return;
-        console.log(`Searching for username: ${textValue}`);
 
         try {
             const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/user/search?username=${textValue}`, {
@@ -74,7 +73,6 @@ const ClubDescription = (props) => {
             });
             
             const data = await response.json();
-            console.log(data)
             if (response.ok) {
                 setUsers(data);
             } else {
@@ -93,7 +91,10 @@ const ClubDescription = (props) => {
             console.error('Token is missing!');
             return;
         }
-    
+        
+        console.log("props.club._id: " + props.club._id);
+        console.log("userId: " + userId);
+
         try {
             const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/addMember`, {
                 method: 'POST',

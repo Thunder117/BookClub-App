@@ -31,7 +31,7 @@ router.delete('/:clubId/removeBook', removeBookFromClub);
 router.post('/addBook/:clubId', addBookToClub);
 
 //POST add a user to a club
-router.post('/clubs/addMember', addMemberToClub);
+router.post('/addMember', addMemberToClub);
 
 // POST a new club
 router.post('/', createClub);
