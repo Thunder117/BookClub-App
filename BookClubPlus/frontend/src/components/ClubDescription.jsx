@@ -91,7 +91,7 @@ const ClubDescription = (props) => {
             console.error('Token is missing!');
             return;
         }
-
+    
         try {
             const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/addMember`, {
                 method: 'POST',
@@ -104,9 +104,11 @@ const ClubDescription = (props) => {
                     userId: userId,
                 }),
             });
-            console.log(response.json());
+    
             if (response.ok) {
                 const updatedClub = await response.json();
+                console.log(updatedClub); // Log the parsed response here
+    
                 // Assuming `updatedClub` returns the club with updated members list
                 const updatedClubs = props.clubs.map((club) =>
                     club._id === updatedClub._id ? updatedClub : club
