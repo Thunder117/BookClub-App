@@ -76,7 +76,7 @@ const ClubDescription = (props) => {
             if (response.ok) {
                 setUsers(data);
             } else {
-                setUsers([]);  // No users found
+                setUsers([]); 
             }
         } catch (error) {
             console.error('Error fetching users:', error);
@@ -107,14 +107,12 @@ const ClubDescription = (props) => {
     
             if (response.ok) {
                 const updatedClub = await response.json();
-                console.log(updatedClub); // Log the parsed response here
     
-                // Assuming `updatedClub` returns the club with updated members list
                 const updatedClubs = props.clubs.map((club) =>
                     club._id === updatedClub._id ? updatedClub : club
                 );
                 props.setClubs(updatedClubs);
-                toggleAddModal();  // Close the modal after adding the user
+                toggleAddModal(); 
             } else {
                 console.error('Error adding user to the club');
             }
@@ -151,27 +149,26 @@ const ClubDescription = (props) => {
 
                         <div className="min-h-32 flex gap-4 p-2 overflow-x-auto overflow-y-hidden">
                             {props.club.members.map((item, index) => {
-                                return <UserCard key={index} userName={item.userName}/>
+                                return(
+                                    <UserCard 
+                                        key={index} 
+                                        userName={item.userName}
+                                    />
+                                )
                             })}
                         </div>
 
                         <div className="flex gap-2 p-2 justify-end items-end h-full">
                         {showEditOptions &&
-                                <div className="flex gap-2">
-                                    <button onClick={toggleAddModal} className="flex justify-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
-                                        Add Member
-                                    </button>
-                                    <button
-                                        onClick={toggleDeleteModal}
-                                        className="bg-red-500 text-white px-4 py-2 rounded-full h-full hover:bg-red-600"
-                                    >
-                                        Delete Club
-                                    </button>
-                                    <button
-                                        onClick={toggleEditOptions}
-                                        className="bg-gray-500 text-white px-4 py-2 rounded-full h-full hover:bg-gray-600"
-                                    >
-                                        Cancel
+                            <div className="flex gap-2">
+                                <button onClick={toggleAddModal} className="flex justify-center bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 shadow-md rounded-full text-s">
+                                    Add Member
+                                </button>
+                                <button
+                                    onClick={toggleDeleteModal}
+                                    className="bg-red-500 text-white px-4 py-2 rounded-full h-full hover:bg-red-600"
+                                >
+                                    Delete Club
                                 </button>
                             </div>
                             }
