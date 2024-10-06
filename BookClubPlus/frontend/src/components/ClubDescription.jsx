@@ -104,7 +104,7 @@ const ClubDescription = (props) => {
                     userId: userId,
                 }),
             });
-    
+            console.log(response.json());
             if (response.ok) {
                 const updatedClub = await response.json();
                 // Assuming `updatedClub` returns the club with updated members list
