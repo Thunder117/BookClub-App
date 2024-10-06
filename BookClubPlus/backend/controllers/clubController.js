@@ -65,16 +65,19 @@ const removeBookFromClub = async (req, res) => {
 const addMemberToClub = async (req, res) => {
     const { clubId, userId } = req.body;
 
+    console.log(clubId, userId);
     try {
         const club = await Club.findById(clubId);
         if (!club) {
             return res.status(404).json({ error: 'Club not found' });
         }
+        console.log("club found")
 
         const user = await User.findById(userId);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
+        console.log("user found")
 
         if (!club.members.some(member => member.userId.toString() === userId)) {
             club.members.push({ userId: user._id, userName: user.username });
