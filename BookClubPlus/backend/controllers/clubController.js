@@ -91,6 +91,33 @@ const addMemberToClub = async (req, res) => {
     }
 };
 
+// Remove a member from a club
+const removeMemberFromClub = async (req, res) => {
+    const { clubId, userId } = req.body;
+
+    try {
+        // Find the club by ID
+        const club = await Club.findById(clubId);
+        if (!club) {
+            return res.status(404).json({ error: 'Club not found' });
+        }
+
+        // Check if the user is a member of the club
+        const isMember = club.members.some(member => member.userId.toString() === userId);
+        if (!isMember) {
+            return res.status(404).json({ error: 'User is not a member of this club' });
+        }
+
+        // Remove the user from the members array
+        club.members = club.members.filter(member => member.userId.toString() !== userId);
+        await club.save();
+
+        res.status(200).json(club);  // Return the updated club details
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 // Create a new club
 const createClub = async (req, res) => {
     
@@ -156,6 +183,7 @@ module.exports = {
     addBookToClub,
     removeBookFromClub,
     addMemberToClub,
+    removeMemberFromClub,
     createClub,
     deleteClub
 };
