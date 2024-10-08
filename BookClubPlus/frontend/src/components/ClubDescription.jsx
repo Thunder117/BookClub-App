@@ -153,6 +153,11 @@ const ClubDescription = (props) => {
                                     <UserCard 
                                         key={index} 
                                         userName={item.userName}
+                                        userId={item.userId}
+                                        clubId={props.club._id}
+                                        clubs={props.clubs}
+                                        setClubs={props.setClubs}
+                                        token={props.token}
                                     />
                                 )
                             })}

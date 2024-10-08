@@ -12,7 +12,7 @@ const UserCard = (props) => {
             console.error('Token is missing!');
             return;
         }
-
+    
         try {
             const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/removeMember`, {
                 method: 'POST',
@@ -21,31 +21,32 @@ const UserCard = (props) => {
                     'Authorization': `Bearer ${props.token}`,
                 },
                 body: JSON.stringify({
-                    clubId: props.club._id,
+                    clubId: props.clubId,
                     userId: props.userId,
                 }),
             });
-
+    
             if (response.ok) {
                 const updatedClub = await response.json();
-
+    
                 // Update the clubs state by removing the deleted user from the current club
                 const updatedClubs = props.clubs.map((club) =>
                     club._id === updatedClub._id ? updatedClub : club
                 );
-
+    
                 // Update the state of clubs
                 props.setClubs(updatedClubs);
                 
                 console.log('User successfully removed from the club');
                 toggleDeleteOption(); // Close the delete option after deleting the user
             } else {
-                console.error('Error removing user from the club');
+                const errorMessage = await response.text();
+                console.error(`Error removing user from the club: ${response.status} ${errorMessage}`);
             }
         } catch (error) {
             console.error('Error removing user from the club:', error);
         }
-    };
+    };    
 
     return(
         <div className="flex flex-col h-28 min-w-24 max-w-24 items-center">
