@@ -136,7 +136,7 @@ const BookPage = () => {
         
         <div className="font-sans flex justify-center min-h-screen pt-20 bg-neutral-100"> {/* ALL */}
 
-            <div className="flex flex-col md:w-4/6 w-5/6 py-2">
+            <div className="flex flex-col w-5/6 py-2">
 
             <>
                 <Link to={`/`} className="flex gap-2 p-2 m-2 w-32 font-bold justify-center hover:text-white duration-300 hover:bg-gray-600 rounded-full transition">
@@ -150,9 +150,9 @@ const BookPage = () => {
                     
                 { book &&
                 
-                    <div className="flex flex-col sm:flex-row w-full min-h-[500px] break-words">
+                    <div className="flex justify-center items-center flex-col md:flex-row w-full min-h-[500px] break-words">
 
-                        <div className="flex flex-col sm:w-1/3 justify-center flex-none">
+                        <div className="flex flex-col md:w-1/3 justify-center flex-none">
                             <div className="flex flex-col px-2 py-2 my-4 gap-4">
                                 <button onClick={checkForUserCreateClub} className="bg-blue-500 hover:bg-blue-600 transition text-white rounded-full font-bold px-6 py-2">
                                     Create a club with this book
@@ -163,13 +163,13 @@ const BookPage = () => {
                                 </button>
                             </div>
 
-                            <div className="w-full min-h-96 max-h-96 flex justify-center">
-                                <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="rounded-md h-full select-none" />
+                            <div className="w-full flex justify-center p-1 h-80">
+                                    <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="rounded-lg h-full select-none" />
                             </div>
                             
                         </div>
 
-                        <div className="flex p-4 flex-col sm:w-2/3">
+                        <div className="flex p-4 flex-col md:w-2/3">
 
                             <div className="text-center p-2 font-bold text-2xl">
                                 {book.title}

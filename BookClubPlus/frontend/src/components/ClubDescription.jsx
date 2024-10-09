@@ -60,9 +60,9 @@ const ClubDescription = (props) => {
     const fetchUsers = async (e) => {
         e.preventDefault();
         setUsers();
+        if (textValue === "" || textValue.length < 2) return;
         setIsLoadingUsers(true);
 
-        if (textValue === "" || textValue.length < 2) return;
 
         try {
             const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/user/search?username=${textValue}`, {

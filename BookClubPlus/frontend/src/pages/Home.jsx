@@ -88,7 +88,7 @@ const Home = () => {
                             search={fetchBook} 
                             textValue={textValue} 
                             setTextValue={setTextValue}
-                            placeHolder="The Lord of the Rings..."
+                            placeHolder="Mistborn..."
                         />
                     </div>
 
