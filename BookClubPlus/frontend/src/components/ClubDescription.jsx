@@ -132,8 +132,8 @@ const ClubDescription = (props) => {
     return (
         <>
             <div className={"flex flex-col gap-8 w-full"}>
-                <div className="flex justify-center">
-                    <div className="flex flex-col bg-white min-h-52 max-h-52 w-[580px] p-3 mx-4 rounded-xl shadow-md">
+                <div className="flex flex-col lg:flex-row justify-center gap-4">
+                    <div className="flex flex-col bg-white h-52 w-full lg:w-1/2 p-3 lg:ml-4 rounded-xl shadow-md">
 
                         <div className="font-semibold p-2 text-3xl">
                             {props.club.title}
@@ -145,9 +145,9 @@ const ClubDescription = (props) => {
 
                     </div>
 
-                    <div className="flex flex-col bg-white min-h-52 max-h-52 w-[580px] p-2 mx-4 rounded-xl shadow-md">
+                    <div className="flex flex-col bg-white h-52 max-h-52 w-full lg:w-1/2 p-2 lg:mr-4 rounded-xl shadow-md">
 
-                        <div className="min-h-32 flex gap-4 p-2 overflow-x-auto overflow-y-hidden">
+                        <div className="min-h-36 flex gap-4 p-2 overflow-x-auto overflow-y-hidden">
                             {props.club.members.map((item, index) => {
                                 return(
                                     <UserCard 
@@ -186,7 +186,7 @@ const ClubDescription = (props) => {
                 </div>
 
                 <div className="bg-white h-full p-2 overflow-x-auto overflow-y-hidden">
-                    <div className="flex items-center justify-start gap-4 p-4 h-full">
+                    <div className="flex flex-col lg:flex-row items-center justify-start gap-4 p-4 h-full">
                         {props.club && props.club.books.map((item, index) => {
                             return (
                                 <ClubBookCard

@@ -8,17 +8,17 @@ const ClubsPage = () => {
     const { user } = useAuthContext();
 
     return (
-    <div className="h-screen overflow-y-hidden">
-        <NavBar showNav/>
+        <div className="h-screen">
+            <NavBar showNav/>
 
-        <div className="font-sans bg-neutral-100 flex h-full"> {/* ALL */}
+            <div className="font-sans bg-neutral-100 flex h-full"> {/* ALL */}
 
-            { user && 
-                <UserClubs user={user} />
-            }
+                { user && 
+                    <UserClubs user={user} />
+                }
 
+            </div>
         </div>
-    </div>
     );
 };
 

@@ -42,13 +42,14 @@ const UserClubs = (props) => {
     }
 
     return(
-        <div className="flex w-full pt-20"> {/* All Columns */}
+        <div className="flex flex-col lg:flex-row w-full pt-20 gap-4 lg:gap-0"> {/* All Columns */}
 
             { clubs.length > 0  && 
             <>
 
-                <div className="w-1/6 overflow-y-hidden max-h-full">
-                    <div className="flex flex-col gap-3 h-[640px] overflow-y-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl py-10"> {/* Left Column */}
+                {/* Left Column */}
+                <div className="w-full lg:w-1/6 max-h-full">
+                    <div className="flex lg:flex-col gap-3 h-full overflow-y-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl py-10"> 
 
                         { clubs.map((club, index) => {
                                 
@@ -59,7 +60,8 @@ const UserClubs = (props) => {
                     </div>
                 </div>
 
-                <div className="flex w-5/6 justify-center"> {/* Right Column */}
+                {/* Right Column */}
+                <div className="flex w-full lg:w-5/6 justify-center"> 
 
                     { clubs.map((club, index) => {
                         
