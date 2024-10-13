@@ -19,7 +19,7 @@ const ClubsPage = () => {
                 <UserClubs user={user} />
             :
             <div className="flex flex-col gap-8 w-full h-4/6 justify-center items-center">
-                <div className="text-xl font-semibold">Oops... It looks like you are not in a club yet</div>
+                <div className="text-xl w-5/6 text-center font-semibold">Oops... It looks like you are not in a club yet</div>
                 <Link to={'/'} className="bg-blue-500 text-white font-semibold px-4 py-2 text-center rounded-full">Create a Club</Link>
             </div>
             }
