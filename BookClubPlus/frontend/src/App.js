@@ -18,10 +18,6 @@ function App() {
 
 				<Route path="/" element={<Home/>}/>
 
-				{/*<Route path="/works">
-					{/*<Route index element={<AllGamesPage/>}/>}
-					
-				</Route>*/}
 				<Route path="/works/:id" element={<BookPage/>}/>
 
 				<Route path="/createclub/:id" element={<CreateClubFromBookPage/>}/>
