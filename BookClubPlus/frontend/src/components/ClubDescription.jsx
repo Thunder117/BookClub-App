@@ -145,7 +145,7 @@ const ClubDescription = (props) => {
 
                     </div>
 
-                    <div className="flex flex-col bg-white h-52 lg:max-h-52 w-full lg:w-1/2 p-2 lg:mr-4 rounded-xl shadow-md">
+                    <div className="flex flex-col bg-white lg:h-52 w-full lg:w-1/2 p-2 lg:mr-4 rounded-xl shadow-md">
 
                         <div className="min-h-36 flex gap-4 p-2 overflow-x-auto overflow-y-hidden">
                             {props.club.members.map((item, index) => {
