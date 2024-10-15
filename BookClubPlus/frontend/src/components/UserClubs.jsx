@@ -49,7 +49,7 @@ const UserClubs = (props) => {
 
             {/* Left Column */}
             <div className="w-full lg:w-1/6 max-h-full">
-                <div className="flex lg:flex-col gap-3 h-full overflow-y-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl py-10"> 
+                <div className="flex lg:flex-col gap-3 h-full overflow-y-auto bg-gradient-to-br from-blue-500 to-blue-600 lg:rounded-xl py-10"> 
 
                     { clubs.map((club, index) => {
                             

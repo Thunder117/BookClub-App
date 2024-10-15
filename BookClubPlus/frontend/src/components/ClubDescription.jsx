@@ -133,7 +133,7 @@ const ClubDescription = (props) => {
         <>
             <div className={"flex flex-col gap-8 w-full"}>
                 <div className="flex flex-col lg:flex-row justify-center gap-4">
-                    <div className="flex flex-col bg-white h-52 w-full lg:w-1/2 p-3 lg:ml-4 rounded-xl shadow-md">
+                    <div className="flex flex-col bg-white h-52 w-full lg:w-1/2 p-3 lg:ml-4 lg:rounded-xl shadow-md">
 
                         <div className="font-semibold p-2 text-3xl">
                             {props.club.title}
@@ -145,7 +145,7 @@ const ClubDescription = (props) => {
 
                     </div>
 
-                    <div className="flex flex-col bg-white lg:h-52 w-full lg:w-1/2 p-2 lg:mr-4 rounded-xl shadow-md">
+                    <div className="flex flex-col bg-white lg:h-52 w-full lg:w-1/2 p-2 lg:mr-4 lg:rounded-xl shadow-md">
 
                         <div className="min-h-36 flex gap-4 p-2 overflow-x-auto overflow-y-hidden">
                             {props.club.members.map((item, index) => {

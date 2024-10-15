@@ -36,7 +36,7 @@ const ClubBookCard = (props) => {
     };
 
     return (
-        <div className="relative flex flex-col gap-2 justify-center items-center h-80 min-w-56">
+        <div className="relative flex flex-col gap-2 justify-center items-center h-80 lg:w-56 w-72 flex-none">
 
             <div className="flex w-full justify-end">
                 {showDeleteOption && (
@@ -62,7 +62,7 @@ const ClubBookCard = (props) => {
                 </button>
             </div>
 
-            <Link to = {`../works/${props.id}`} className="bg-neutral-100 flex flex-col h-72 w-52 rounded-lg ease-out duration-500 hover:h-80 hover:w-56">
+            <Link to = {`../works/${props.id}`} className="bg-neutral-100 flex flex-col h-72 w-full hover:w-80 lg:hover:w-60 rounded-xl ease-out duration-500">
 
                 <div className="flex justify-center w-full h-60">
                     <img 
