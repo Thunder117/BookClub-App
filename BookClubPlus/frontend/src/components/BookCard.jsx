@@ -24,7 +24,7 @@ const BookCard = (props) => {
                 </div>
 
                 <div className="max-h-20 text-gray-500 truncate text-md font-semibold text-center">
-                    by {book.authors?.join(', ')}  {/* Join authors array */}
+                    by {book.authors?.join(', ')}
                 </div>
 
             </div>

@@ -143,6 +143,11 @@ const BookPage = () => {
                     <div className="flex justify-center items-center flex-col md:flex-row w-full min-h-[500px] break-words">
 
                         <div className="flex flex-col md:w-1/3 justify-center flex-none">
+                            
+                            <div className="w-full flex justify-center p-1 h-80">
+                                <img alt="book_cover" src={book.imageLinks?.thumbnail || 'placeholder.jpg'} className="rounded-lg h-full select-none" />
+                            </div>
+                            
                             <div className="flex flex-col px-2 py-2 my-4 gap-4">
                                 <button onClick={checkForUserCreateClub} className="bg-blue-500 hover:bg-blue-600 transition text-white rounded-full font-bold px-6 py-2">
                                     Create a club with this book
@@ -152,10 +157,6 @@ const BookPage = () => {
                                     Add this book to one of your clubs
                                 </button>
                             </div>
-
-                            <div className="w-full flex justify-center p-1 h-80">
-                                <img alt="book_cover" src={book.imageLinks?.thumbnail || 'placeholder.jpg'} className="rounded-lg h-full select-none" />
-                            </div>
                             
                         </div>
 
@@ -163,6 +164,9 @@ const BookPage = () => {
 
                             <div className="text-center p-2 font-bold text-2xl">
                                 {book.title}
+                            </div>
+                            <div className="max-h-20 text-gray-500 truncate text-md font-semibold text-center">
+                                by {book.authors?.join(', ')}
                             </div>
 
                             <div className="py-2 md:p-4 max-h-[450px] font-semibold text-lg overflow-auto"

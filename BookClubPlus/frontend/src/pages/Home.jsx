@@ -6,6 +6,7 @@ import 'react-spinner-animated/dist/index.css';
 import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
 import BooksShowcase from '../components/BooksShowcase';
+import FeaturedBooks from '../components/FeaturedBooks'
 
 const Home = () => {
     const [showNav, setShowNav] = useState(false); 
@@ -93,6 +94,9 @@ const Home = () => {
                 </div>
 
                 <div className="flex justify-center h-full">
+                    
+                    {!books && !isLoadingBooks && <FeaturedBooks />} 
+
                     {isLoadingBooks && (
                         <div className="h-full md:w-5/6 flex justify-center flex-wrap py-6">
                             <Spinner  
