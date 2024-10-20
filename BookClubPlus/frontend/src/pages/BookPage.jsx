@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { Link } from "react-router-dom";
 import { Spinner } from 'react-spinner-animated';
-import 'react-spinner-animated/dist/index.css'
+import 'react-spinner-animated/dist/index.css';
 
 // Components
 import NavBar from '../components/NavBar';
@@ -13,49 +13,34 @@ const BookPage = () => {
     const [book, setBook] = useState(); 
     const [userClubs, setUserClubs] = useState();
     const [isLoadingClubs, setIsLoadingClubs] = useState(false);  
-    const [hasDescription, setHasDescription] = useState(false); 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { user } = useAuthContext();
-    const { id } = useParams();
+    const { id } = useParams();  // 'id' is the Google Books API volume ID
     const navigate = useNavigate();
 
     useEffect(() => {
         if(user) {
             fetchUserClubs();
         }
-        fetchAll();
-            
+        fetchBook();
     }, [user]);
-    
-    const fetchAll = async () => {
-        const book = await fetchBook();
-        await checkForDescription(book);
-    };
 
     const fetchBook = async () => {
-        const response = await fetch(`http://openlibrary.org/works/${id}.json`);
-        const json = await response.json();
-    
-        setBook(json);
-
-        return json;
-    };
-    
-    const checkForDescription = (book) => {
-
-        const checkTypeOfDescription = (book) => {
-            if(book.description.value) {
-                setHasDescription("Value Description");
-            } else {
-                setHasDescription("Regular Description");
+        try {
+            const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
+            
+            const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${id}?key=${apiKey}`);
+            if (!response.ok) {
+                throw new Error(`Error fetching book data: ${response.statusText}`);
             }
-        };
-
-        if (book.hasOwnProperty("description")) {
-            checkTypeOfDescription(book);   
+            const json = await response.json();
+            setBook(json.volumeInfo);
+        } catch (error) {
+            console.error('Error fetching book from Google Books API:', error);
+            setBook(null); // Clear the book state or show error UI
         }
-    };
+    };    
 
     const fetchUserClubs = async () => {
         try {
@@ -66,7 +51,7 @@ const BookPage = () => {
         } catch (error) {
             console.error('Error fetching user clubs:', error);
         } finally {
-            setIsLoadingClubs(false); // Ensure loading state is reset after fetching
+            setIsLoadingClubs(false); 
         }
     };
 
@@ -75,13 +60,13 @@ const BookPage = () => {
             navigate(`/login/${id}`);
             return;
         }
-    
+
         const bookDetails = {
-            bookId: id, // The ID of the book from the Open Library
-            bookTitle: book.title, // Assuming you have the title in the book state
-            bookImage: book.covers[0]
+            bookId: id, 
+            bookTitle: book.title, 
+            bookImage: book.imageLinks.thumbnail  // Update for Google Books API
         };
-    
+
         try {
             const response = await fetch(`https://book-club-react-app-backend.onrender.com/api/clubs/addBook/${clubId}`, {
                 method: 'POST',
@@ -89,11 +74,11 @@ const BookPage = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${user.token}`, 
                 },
-                body: JSON.stringify(bookDetails), // Send the book details
+                body: JSON.stringify(bookDetails), 
             });
-    
+
             const json = await response.json();
-    
+
             if (response.ok) {
                 console.log('Book added to club:', json);
             } else {
@@ -104,7 +89,7 @@ const BookPage = () => {
         } catch (error) {
             console.error('Error adding book to club:', error);
         }
-    };    
+    };
 
     const checkForUserToLink = () => {
         if(user) {
@@ -112,23 +97,23 @@ const BookPage = () => {
         } else {
             navigate(`/login/${id}`);
         }
-    }
+    };
 
     const checkForUserCreateClub = () => {
         if(checkForUserToLink()) {
             navigate(`/createclub/${id}`);
         }
-    }
+    };
 
     const checkForUserAddClub = () => {
         if(checkForUserToLink()) { 
             toggleModal();
         }
-    }
+    };
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
-    }
+    };
 
     return (
     <>
@@ -148,8 +133,13 @@ const BookPage = () => {
                     </div>
                 </Link>
                     
-                { book &&
-                
+                {!book && (
+                    <div className="flex justify-center h-full items-center">
+                        <Spinner center={false} width={"100px"} height={"100px"} />
+                    </div>
+                )}
+
+                { book && (
                     <div className="flex justify-center items-center flex-col md:flex-row w-full min-h-[500px] break-words">
 
                         <div className="flex flex-col md:w-1/3 justify-center flex-none">
@@ -164,7 +154,7 @@ const BookPage = () => {
                             </div>
 
                             <div className="w-full flex justify-center p-1 h-80">
-                                    <img alt="book_cover" src={`https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`} className="rounded-lg h-full select-none" />
+                                <img alt="book_cover" src={book.imageLinks?.thumbnail || 'placeholder.jpg'} className="rounded-lg h-full select-none" />
                             </div>
                             
                         </div>
@@ -176,29 +166,14 @@ const BookPage = () => {
                             </div>
 
                             <div className="py-2 md:p-4 max-h-[450px] font-semibold text-lg overflow-auto">
-                                
-                                {hasDescription
-                                ?   
-                                <>
-                                    {hasDescription === "Regular Description"
-                                    ? 
-                                        book.description
-                                    :
-                                        book.description.value
-                                    }
-                                </>
-                                :
-                                    "No description available for this book"
-                                }
-                                
+                                {book.description || "No description available for this book"}
                             </div>
                                 
                         </div>
 
                     </div>
-                
-                }
-                
+                )}
+
             </>
 
             </div>
@@ -240,7 +215,6 @@ const BookPage = () => {
 
     </>
     );
-    
 };
 
 export default BookPage;

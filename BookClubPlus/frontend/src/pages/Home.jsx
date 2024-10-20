@@ -40,7 +40,6 @@ const Home = () => {
 
             if (json.items && json.items.length > 0) {
                 setBooks(json.items); // Google Books returns an array of items in 'items'
-                console.log(json.items);
             } else {
                 setBooks(0); // No books found
             }

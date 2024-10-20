@@ -9,11 +9,12 @@ const BooksShowcase = (props) => {
             {props.books && 
                 props.books.slice(0, 20).map((item, index) => {
                     const volumeInfo = item.volumeInfo;  // Extract volumeInfo from each item
+                    const bookId = item.id; // Extract the id 
 
                     // Check for necessary book details
                     if(volumeInfo.authors && volumeInfo.imageLinks?.thumbnail) {
                         // Adapt to new Google Books structure
-                        return <BookCard key={index} book={volumeInfo} />;  // Pass volumeInfo to BookCard
+                        return <BookCard key={index} book={volumeInfo} bookId={bookId} />;  // Pass volumeInfo to BookCard
                     }
                     return null;
                 })
