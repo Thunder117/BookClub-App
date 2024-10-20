@@ -57,7 +57,8 @@ const SignUp = () => {
                             className="bg-[#1b1b1e] rounded-sm h-10 px-2 mt-2 mb-4 text-base"
                         />
 
-                        <label>PASSWORD</label>
+                        <label>PASSWORD </label>
+                        <label>At least 8 characters, one capital letter, one number, and one symbol </label>
                         <input
                             type='password'
                             onChange={(e) => setPassword(e.target.value)}
