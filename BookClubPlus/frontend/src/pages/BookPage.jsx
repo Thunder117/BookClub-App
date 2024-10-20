@@ -165,8 +165,8 @@ const BookPage = () => {
                                 {book.title}
                             </div>
 
-                            <div className="py-2 md:p-4 max-h-[450px] font-semibold text-lg overflow-auto">
-                                {book.description || "No description available for this book"}
+                            <div className="py-2 md:p-4 max-h-[450px] font-semibold text-lg overflow-auto"
+                                dangerouslySetInnerHTML={{ __html: book.description || "No description available for this book" }}>
                             </div>
                                 
                         </div>

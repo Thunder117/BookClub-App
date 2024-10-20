@@ -78,7 +78,7 @@ const ClubBookCard = (props) => {
             </div>
 
             {bookData && (
-                <Link to = {`../works/${props.id}`} className="bg-neutral-100 flex flex-col h-72 w-full hover:w-80 lg:hover:w-60 rounded-xl ease-out duration-500">
+                <Link to = {`../book/${props.id}`} className="bg-neutral-100 flex flex-col h-72 w-full hover:w-80 lg:hover:w-60 rounded-xl ease-out duration-500">
                     <div className="flex justify-center w-full h-60">
                         <img 
                             alt="book_cover" 
