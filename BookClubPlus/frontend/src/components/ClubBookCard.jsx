@@ -1,9 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 const ClubBookCard = (props) => {
+    const [bookData, setBookData] = useState(null); // Store book data from Google Books API
     const [showDeleteOption, setShowDeleteOption] = useState(false); // Toggle for delete option
-    
+
+    // Fetch book data using the Google Books API
+    useEffect(() => {
+        const fetchBookData = async () => {
+            try {
+                const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${props.id}?key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`);
+                const data = await response.json();
+                setBookData(data.volumeInfo); // Store volumeInfo
+            } catch (error) {
+                console.error('Error fetching book data:', error);
+            }
+        };
+        fetchBookData();
+    }, [props.id]);
+
     const toggleDeleteOption = () => {
         setShowDeleteOption(!showDeleteOption); // Toggle the visibility of the delete option
     };
@@ -62,22 +77,22 @@ const ClubBookCard = (props) => {
                 </button>
             </div>
 
-            <Link to = {`../works/${props.id}`} className="bg-neutral-100 flex flex-col h-72 w-full hover:w-80 lg:hover:w-60 rounded-xl ease-out duration-500">
-
-                <div className="flex justify-center w-full h-60">
-                    <img 
-                        alt="book_cover" 
-                        src={`https://covers.openlibrary.org/b/id/${props.image}-M.jpg`} 
-                        className="h-full" 
-                    />
-                </div>
-                <div className="w-full h-full flex items-center justify-center">
-                    <div className="max-w-lg truncate">
-                        {props.title}
+            {bookData && (
+                <Link to = {`../works/${props.id}`} className="bg-neutral-100 flex flex-col h-72 w-full hover:w-80 lg:hover:w-60 rounded-xl ease-out duration-500">
+                    <div className="flex justify-center w-full h-60">
+                        <img 
+                            alt="book_cover" 
+                            src={bookData.imageLinks?.thumbnail || 'https://via.placeholder.com/150'} 
+                            className="h-full" 
+                        />
                     </div>
-                </div>
-
-            </Link>
+                    <div className="w-full h-full flex items-center justify-center">
+                        <div className="max-w-lg truncate">
+                            {bookData.title}
+                        </div>
+                    </div>
+                </Link>
+            )}
         </div>
     );
 };

@@ -82,8 +82,8 @@ const UserClubs = (props) => {
         }
             
         {clubs.length === 0  && 
-            <div className="flex flex-col gap-8  w-full h-4/6 justify-center items-center">
-                <div className="w-4/6 text-xl font-semibold">
+            <div className="flex flex-col gap-8 w-full h-4/6 justify-center items-center">
+                <div className="w-4/6 text-xl font-semibold text-center">
                     Oops... It looks like you are not in a club yet
                 </div>
                 <Link to={'/'} className="bg-blue-500 text-white font-semibold px-4 py-2 text-center rounded-full">Create a Club</Link>

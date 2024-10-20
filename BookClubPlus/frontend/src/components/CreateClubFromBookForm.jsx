@@ -2,27 +2,30 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-spinner-animated';
-import 'react-spinner-animated/dist/index.css'
+import 'react-spinner-animated/dist/index.css';
 
 const CreateClubFromBookForm = (props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState(''); 
     const [isLoading, setIsLoading] = useState(false);  
-    const [emptyFields, setEmptyFields ] = useState([]);
+    const [emptyFields, setEmptyFields ] = useState([{}]);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
- 
+
+    // Check if props.book is defined
+    const book = props.book || {};
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setIsLoading(true);
-
+    
         const books = [{
-            bookId: props.id,
-            bookTitle: props.book.title,
-            bookImage: props.book.covers[0].toString()
-        }]
+            bookId: book.id, // Use the ID from the props
+            bookTitle: book.title, // Use the title from the props
+            bookImage: book.image // Use the image from the props
+        }];
         const createdBy = props.user.username;
-
+    
         const club = { title, description, books, createdBy };
 
         const response = await fetch('https://book-club-react-app-backend.onrender.com/api/clubs', {
@@ -53,9 +56,7 @@ const CreateClubFromBookForm = (props) => {
     };
 
     return (
-    
         <div className="font-sans h-full flex justify-center items-center pt-20 lg:pt-16">
-
             { isLoading && 
                  <Spinner  
                     center={true} 
@@ -65,11 +66,9 @@ const CreateClubFromBookForm = (props) => {
             }
           
             <div className="w-full h-full sm:w-[500px] sm:h-[500px] px-6 sm:py-4 sm:rounded-md drop-shadow-2xl bg-neutral-100">
-                
                 <form className="flex flex-col h-full gap-4 font-semibold tracking-wide" onSubmit={handleSubmit}>
-
-                    <Link to={`${props.book.key}`} className="flex gap-2 p-2 w-32 font-bold justify-center hover:bg-blue-300 rounded-full transition">
-                        <svg class="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <Link to={`../book/${book.id}`} className="flex gap-2 p-2 w-32 font-bold justify-center hover:bg-blue-300 rounded-full transition">
+                        <svg className="text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
                         </svg>
                         <div>
@@ -107,11 +106,8 @@ const CreateClubFromBookForm = (props) => {
                     </div>
                 
                 </form>
-            
             </div>
-       
-       </div>
-
+        </div>
     );
 }
 
